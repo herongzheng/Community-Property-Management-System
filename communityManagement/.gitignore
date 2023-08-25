@@ -37,3 +37,4 @@ out/
 .vscode/
 
 ### other files or files with private info ###
+src/main/resources/application.yml
