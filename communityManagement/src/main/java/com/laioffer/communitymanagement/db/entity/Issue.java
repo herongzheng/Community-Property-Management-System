@@ -20,7 +20,6 @@ import java.util.List;
 @Table(name = "issue")
 public class Issue {
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;

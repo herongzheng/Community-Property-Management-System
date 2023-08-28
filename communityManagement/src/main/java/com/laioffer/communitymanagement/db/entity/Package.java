@@ -24,7 +24,6 @@ import java.time.LocalDate;
 @Table(name = "package")
 public class Package {
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
