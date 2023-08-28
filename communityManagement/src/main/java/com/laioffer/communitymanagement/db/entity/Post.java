@@ -10,10 +10,9 @@ import java.time.LocalDateTime;
 @Table(name = "post")
 public class Post {
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonProperty("postedTime")
+    @JsonProperty("posted_time")
     private LocalDateTime postedTime;
     private String content;
     @JsonProperty("stick_to_top")

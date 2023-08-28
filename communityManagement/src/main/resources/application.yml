@@ -16,4 +16,3 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 #################################################################################################
-# don't forget to remove credentials
