@@ -27,7 +27,7 @@ public class Issue {
     private LocalDate reportDate;
     @JsonProperty("closed_date")
     private LocalDate closedDate;
-    private boolean confirmed;
+    private boolean confirmed;  // is it automatically confirmed?
 
     @ManyToOne
     @JoinColumn(name = "tenant_id")
@@ -36,6 +36,7 @@ public class Issue {
 
     @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<IssueImage> images;
+
     public Issue() {}
 
     public Long getId() {
@@ -58,11 +59,40 @@ public class Issue {
         return confirmed;
     }
 
-    public void setConfirmed(boolean confirmed) {
-        this.confirmed = confirmed;
-    }
-
     public User getResident() {
         return resident;
+    }
+
+    public List<IssueImage> getImages() {
+        return images;
+    }
+
+    public Issue setContent(String content) {
+        this.content = content;
+        return this;
+    }
+
+    public Issue setReportDate(LocalDate reportDate) {
+        this.reportDate = reportDate;
+        return this;
+    }
+
+    public Issue setClosedDate(LocalDate closedDate) {
+        this.closedDate = closedDate;
+        return this;
+    }
+
+    public Issue setConfirmed(boolean confirmed) {       // is it necessary????????????????
+        this.confirmed = confirmed;
+        return this;
+    }
+
+    public Issue setResident(User resident) {
+        this.resident = resident;
+        return this;
+    }
+
+    public void setImages(List<IssueImage> images) {
+        this.images = images;
     }
 }

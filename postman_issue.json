@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "1e63c09a-f1f6-4ab6-b08a-b4175817c92f",
+		"name": "CPMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28123251"
+	},
+	"item": [
+		{
+			"name": "1.0 List Issues by Resident without Principle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/stays?host=sun",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stays"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": "sun"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.0 Post Issue without Principle and images",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdW4iLCJleHAiOjE2ODA0Njg3MDEsImlhdCI6MTY4MDM4MjMwMX0._cexTt-q58L8U1Ys7fjmxQfXCCiwSQY8W9lAGHIggXw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "laiproject-stay",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "2350 Mission College Blvd #840, Santa Clara, CA",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "laiproject-stay",
+							"type": "text"
+						},
+						{
+							"key": "guest_number",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "/Users/xy/Dropbox/My Mac (xyzira)/Downloads/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1 Large.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/stays",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.0 Comfirm Issue",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdW4iLCJleHAiOjE2ODA0Njg3MDEsImlhdCI6MTY4MDM4MjMwMX0._cexTt-q58L8U1Ys7fjmxQfXCCiwSQY8W9lAGHIggXw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "laiproject-stay",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "2350 Mission College Blvd #840, Santa Clara, CA",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "laiproject-stay",
+							"type": "text"
+						},
+						{
+							"key": "guest_number",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "/Users/xy/Dropbox/My Mac (xyzira)/Downloads/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1 Large.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/stays",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.0 Close Issue",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdW4iLCJleHAiOjE2ODA0Njg3MDEsImlhdCI6MTY4MDM4MjMwMX0._cexTt-q58L8U1Ys7fjmxQfXCCiwSQY8W9lAGHIggXw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "laiproject-stay",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "2350 Mission College Blvd #840, Santa Clara, CA",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "laiproject-stay",
+							"type": "text"
+						},
+						{
+							"key": "guest_number",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "/Users/xy/Dropbox/My Mac (xyzira)/Downloads/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1 Large.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/stays",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stays"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
