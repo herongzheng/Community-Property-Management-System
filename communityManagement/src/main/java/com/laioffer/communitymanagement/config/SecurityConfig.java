@@ -10,11 +10,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/issues/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/issues/*").hasAuthority("ROLE_GUEST")
-                .anyRequest().authenticated()
-                .and()
+                .authorizeHttpRequests(auth -> auth.antMatchers("/**").permitAll())
+//                .antMatchers(HttpMethod.GET, "/issues/*").permitAll()
+//                .antMatchers(HttpMethod.POST, "/issues/*").hasAuthority("ROLE_GUEST")
+//                .anyRequest().authenticated()
+//                .and()
                 .csrf()
                 .disable();
     }

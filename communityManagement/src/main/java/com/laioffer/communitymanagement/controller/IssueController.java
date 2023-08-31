@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 @RestController
@@ -18,13 +19,45 @@ public class IssueController {
         this.issueService = issueService;
     }
 
+//    1. for host and resident to list a resident's issues-------------------------------------------------
     @GetMapping(value = "/issues")
-    public List<Issue> listIssues(String aptNumber) {
-        return issueService.listByGuest(aptNumber);
+    public List<Issue> listIssues(@RequestParam(name = "apt_number") String aptNumber) {
+        return issueService.listIssuesByResident(aptNumber);
     }
 //    public List<Issue> listIssues(Principal principal) {
 //        return issueService.listByUser(principal.getAptNumber());
 //    }
+
+//    2. for resident to post issue--------------------------------------------------------
+    @PostMapping("/issues/create")
+    public void addIssue(
+            @RequestParam("content") String content,
+//            @RequestParam("images") MultipartFile[] images,
+            @RequestParam("username") String username) {
+//            Principal principal) {
+
+        ZoneId zid = ZoneId.of("America/Los_Angeles");
+        Issue issue = new Issue()
+                .setContent(content)
+                .setReportDate(LocalDate.now(zid))
+                .setResident(new User.Builder().setUsername(username).build());     //fake user?????????????????
+        issueService.add(issue);
+//        issueService.add(issue, images);
+    }
+
+    //    3. for host to confirm issue--------------------------------------------------------
+    @PostMapping(value = "/issues/confirm/{issueId}")
+    public void confirmIssue(@PathVariable Long issueId) {
+//            , Principal principal) {
+        issueService.confirmIssue(issueId);
+    }
+
+    //    4. for host to close issue--------------------------------------------------------
+    @PostMapping(value = "/issues/close/{issueId}")
+    public void closeIssue(@PathVariable Long issueId) {
+//            , Principal principal) {
+        issueService.closeIssue(issueId);
+    }
 
     @GetMapping(value = "/issues/{issueId}")
     public Issue getIssue(@PathVariable Long issueId, String aptNumber) {
@@ -34,26 +67,6 @@ public class IssueController {
 //        return issueService.listByIdAndGuest(issueId, principal.getAptNumber());
 //    }
 
-    @PostMapping("/issues")
-    public void addIssue(
-            @RequestParam("content") String content,
-            @RequestParam("posted_at") LocalDate postedAt,  //how to get current date
-            @RequestParam("images") MultipartFile[] images,
-            Principal principal) {
-
-
-        Issue issue = new Issue.Builder()
-                .setContent(content)
-                .setPostedAt(postedAt)
-                .setGuest(new User.Builder().setUsername(principal.getName()).build())
-                .build();
-        issueService.add(issue, images);
-    }
-
-    @PutMapping(value = "/issues/{issueId}/close")
-    public void closeIssue(@PathVariable Long issueId, String aptNumber) {
-        issueService.closeIssue(issueId, aptNumber);
-    }
 
 
 
