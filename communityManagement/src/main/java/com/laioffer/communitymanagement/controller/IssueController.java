@@ -59,15 +59,4 @@ public class IssueController {
         issueService.closeIssue(issueId);
     }
 
-    @GetMapping(value = "/issues/{issueId}")
-    public Issue getIssue(@PathVariable Long issueId, String aptNumber) {
-        return issueService.listByIdAndGuest(issueId, aptNumber);
-    }
-//    public Issue getIssue(@PathVariable Long issueId, Principal principal) {
-//        return issueService.listByIdAndGuest(issueId, principal.getAptNumber());
-//    }
-
-
-
-
 }
