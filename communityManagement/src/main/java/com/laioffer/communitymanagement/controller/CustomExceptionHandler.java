@@ -1,9 +1,6 @@
 package com.laioffer.communitymanagement.controller;
 
-import com.laioffer.communitymanagement.exception.IssueAlreadyClosedException;
-import com.laioffer.communitymanagement.exception.IssueAlreadyConfirmedException;
-import com.laioffer.communitymanagement.exception.IssueNotConfirmedException;
-import com.laioffer.communitymanagement.exception.IssueNotExistException;
+import com.laioffer.communitymanagement.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,5 +26,10 @@ public class CustomExceptionHandler {
     @ExceptionHandler(IssueNotConfirmedException.class)
     public final ResponseEntity<String> handleIssueNotConfirmedExceptions(Exception ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AmazonS3UploadException.class)
+    public final ResponseEntity<String> handleAmazonS3UploadExceptions(Exception ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
