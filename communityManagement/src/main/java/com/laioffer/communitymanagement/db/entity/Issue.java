@@ -27,7 +27,7 @@ public class Issue {
     private LocalDate reportDate;
     @JsonProperty("closed_date")
     private LocalDate closedDate;
-    private boolean confirmed;  // is it automatically confirmed?
+    private boolean confirmed;
 
     @ManyToOne
     @JoinColumn(name = "tenant_id")
@@ -82,7 +82,7 @@ public class Issue {
         return this;
     }
 
-    public Issue setConfirmed(boolean confirmed) {       // is it necessary????????????????
+    public Issue setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
         return this;
     }

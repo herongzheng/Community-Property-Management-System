@@ -19,7 +19,7 @@ public class IssueController {
         this.issueService = issueService;
     }
 
-//    1. for host and resident to list a resident's issues-------------------------------------------------
+//    1.0 for resident to list his/her issues-------------------------------------------------
     @GetMapping(value = "/issues")
     public List<Issue> listIssues(@RequestParam(name = "apt_number") String aptNumber) {
         return issueService.listIssuesByResident(aptNumber);
@@ -28,11 +28,13 @@ public class IssueController {
 //        return issueService.listByUser(principal.getAptNumber());
 //    }
 
+//    1.1 for host to list a resident's issues-------------------------------------------------
+
 //    2. for resident to post issue--------------------------------------------------------
     @PostMapping("/issues/create")
     public void addIssue(
             @RequestParam("content") String content,
-//            @RequestParam("images") MultipartFile[] images,
+            @RequestParam("images") MultipartFile[] images,
             @RequestParam("username") String username) {
 //            Principal principal) {
 
@@ -40,9 +42,8 @@ public class IssueController {
         Issue issue = new Issue()
                 .setContent(content)
                 .setReportDate(LocalDate.now(zid))
-                .setResident(new User.Builder().setUsername(username).build());     //fake user?????????????????
-        issueService.add(issue);
-//        issueService.add(issue, images);
+                .setResident(new User.Builder().setUsername(username).build());
+        issueService.add(issue, images);
     }
 
     //    3. for host to confirm issue--------------------------------------------------------

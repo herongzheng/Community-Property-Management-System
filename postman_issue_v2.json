@@ -32,7 +32,7 @@
 			"response": []
 		},
 		{
-			"name": "2.0 Post Issue without Principle and images",
+			"name": "2.1 Post Issue without Principle",
 			"request": {
 				"auth": {
 					"type": "bearer",
