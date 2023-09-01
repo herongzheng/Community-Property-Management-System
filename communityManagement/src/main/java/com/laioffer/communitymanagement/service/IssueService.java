@@ -7,7 +7,7 @@ import com.laioffer.communitymanagement.exception.IssueNotConfirmedException;
 import com.laioffer.communitymanagement.exception.IssueNotExistException;
 import com.laioffer.communitymanagement.db.entity.Issue;
 import org.springframework.stereotype.Service;
-import com.laioffer.communitymanagement.repository.IssueRepository;
+import com.laioffer.communitymanagement.db.repository.IssueRepository;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;

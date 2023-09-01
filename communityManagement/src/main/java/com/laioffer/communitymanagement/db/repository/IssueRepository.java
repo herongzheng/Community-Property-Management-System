@@ -1,4 +1,4 @@
-package com.laioffer.communitymanagement.repository;
+package com.laioffer.communitymanagement.db.repository;
 
 import com.laioffer.communitymanagement.db.entity.Issue;
 import org.springframework.data.jpa.repository.JpaRepository;

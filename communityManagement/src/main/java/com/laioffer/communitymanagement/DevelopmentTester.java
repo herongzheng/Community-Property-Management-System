@@ -3,8 +3,8 @@ package com.laioffer.communitymanagement;
 import com.laioffer.communitymanagement.db.entity.Issue;
 import com.laioffer.communitymanagement.db.entity.IssueImage;
 import com.laioffer.communitymanagement.db.entity.User;
-import com.laioffer.communitymanagement.repository.IssueRepository;
-import com.laioffer.communitymanagement.repository.UserRepository;
+import com.laioffer.communitymanagement.db.repository.IssueRepository;
+import com.laioffer.communitymanagement.db.repository.UserRepository;
 import com.laioffer.communitymanagement.service.IssueService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
