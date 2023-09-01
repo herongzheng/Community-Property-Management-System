@@ -13,7 +13,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,10 +48,9 @@ public class DevelopmentTester implements ApplicationRunner {
                 .setLastName("ha");
         userRepository.save(user);
 
-        ZoneId zid = ZoneId.of("America/Los_Angeles");
         Issue issue = new Issue()
                 .setContent("Plumbing issue")
-                .setReportDate(LocalDate.now(zid))
+                .setReportDate(LocalDate.now())
                 .setResident(new User.Builder().setUsername("haha").build());
         String url = "https://myawsbucketforcpms.s3.us-east-2.amazonaws.com/1.jpeg";
         IssueImage issueImage = new IssueImage(url, issue);
@@ -62,7 +60,7 @@ public class DevelopmentTester implements ApplicationRunner {
 
         Issue issue2 = new Issue()
                 .setContent("Plumbing issue2")
-                .setReportDate(LocalDate.now(zid))
+                .setReportDate(LocalDate.now())
                 .setResident(new User.Builder().setUsername("haha").build());
         issueRepository.save(issue);
         issueRepository.save(issue2);

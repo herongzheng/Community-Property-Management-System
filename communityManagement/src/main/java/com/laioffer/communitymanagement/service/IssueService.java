@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -73,8 +72,7 @@ public class IssueService {
         if (!issue.get().isConfirmed()) {
             throw new IssueNotConfirmedException("Issue cannot be closed");
         }
-        ZoneId zid = ZoneId.of("America/Los_Angeles");
-        issueRepository.updateClosedDateByIssueId(issueId, LocalDate.now(zid));
+        issueRepository.updateClosedDateByIssueId(issueId, LocalDate.now());
     }
 
 //    public Issue listByIdAndGuest(Long issueId, String aptNumber) throws IssueNotExistException {
