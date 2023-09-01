@@ -14,6 +14,8 @@ public class IssueImage {
     @JsonIgnore
     private Issue issue;
 
+    public IssueImage() {}
+
     public IssueImage(String url, Issue issue) {
         this.url = url;
         this.issue = issue;
@@ -27,7 +29,12 @@ public class IssueImage {
         return issue;
     }
 
-    public IssueImage setIssueId(Issue issue) {
+    public IssueImage setUrl(String url) {
+        this.url = url;
+        return this;
+    }
+
+    public IssueImage setIssue(Issue issue) {
         this.issue = issue;
         return this;
     }

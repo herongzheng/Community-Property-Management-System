@@ -1,6 +1,7 @@
 package com.laioffer.communitymanagement;
 
 import com.laioffer.communitymanagement.db.entity.Issue;
+import com.laioffer.communitymanagement.db.entity.IssueImage;
 import com.laioffer.communitymanagement.db.entity.User;
 import com.laioffer.communitymanagement.repository.IssueRepository;
 import com.laioffer.communitymanagement.repository.UserRepository;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DevelopmentTester implements ApplicationRunner {
@@ -52,6 +55,12 @@ public class DevelopmentTester implements ApplicationRunner {
                 .setContent("Plumbing issue")
                 .setReportDate(LocalDate.now(zid))
                 .setResident(new User.Builder().setUsername("haha").build());
+        String url = "https://myawsbucketforcpms.s3.us-east-2.amazonaws.com/1.jpeg";
+        IssueImage issueImage = new IssueImage(url, issue);
+        List<IssueImage> issueImages = new ArrayList<>();
+        issueImages.add(issueImage);
+        issue.setImages(issueImages);
+
         Issue issue2 = new Issue()
                 .setContent("Plumbing issue2")
                 .setReportDate(LocalDate.now(zid))
