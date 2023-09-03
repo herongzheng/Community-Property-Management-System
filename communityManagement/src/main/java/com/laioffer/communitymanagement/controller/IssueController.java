@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 @RestController
@@ -19,44 +18,65 @@ public class IssueController {
         this.issueService = issueService;
     }
 
+//    1. list issues
 //    1.0 for resident to list his/her issues-------------------------------------------------
+//    1.0.1 version without principle
     @GetMapping(value = "/issues")
-    public List<Issue> listIssues(@RequestParam(name = "apt_number") String aptNumber) {
-        return issueService.listIssuesByResident(aptNumber);
+    public List<Issue> listIssues(@RequestParam(name = "username") String username) {
+        return issueService.listIssuesByResident(username);
     }
+//    1.0.2 version with principle
 //    public List<Issue> listIssues(Principal principal) {
-//        return issueService.listByUser(principal.getAptNumber());
+//        return issueService.listIssuesByResident(principal.getName());
 //    }
 
 //    1.1 for host to list a resident's issues-------------------------------------------------
+//    Issues will be listed in the following order:
+//      notConfirmedIssues, confirmedNotClosedIssues and closedIssues
+//    Within the notConfirmedIssues and confirmedNotClosedIssues,
+//      the issues will be arranged in ascending order based on reportDate.
+//    Within the closedIssues, the issues will be arranged in descending order based on closedDate.
+    @GetMapping(value = "hoa/issues")
+    public List<Issue> listAllIssues() {
+        return issueService.listAllIssues();
+    }
 
 //    2. for resident to post issue--------------------------------------------------------
+//    2.1 version without principle
     @PostMapping("/issues/create")
     public void addIssue(
             @RequestParam("content") String content,
             @RequestParam("images") MultipartFile[] images,
             @RequestParam("username") String username) {
-//            Principal principal) {
 
-        ZoneId zid = ZoneId.of("America/Los_Angeles");
         Issue issue = new Issue()
                 .setContent(content)
-                .setReportDate(LocalDate.now(zid))
+                .setReportDate(LocalDate.now())
                 .setResident(new User.Builder().setUsername(username).build());
         issueService.add(issue, images);
     }
+//    2.2 version with principle
+//    public void addIssue(
+//            @RequestParam("content") String content,
+//            @RequestParam("images") MultipartFile[] images,
+//            Principal principle) {
+//
+//        Issue issue = new Issue()
+//                .setContent(content)
+//                .setReportDate(LocalDate.now())
+//                .setResident(new User.Builder().setUsername(principle.getName()).build());
+//        issueService.add(issue, images);
+//    }
 
-    //    3. for host to confirm issue--------------------------------------------------------
+//    3. for host to confirm issue--------------------------------------------------------
     @PostMapping(value = "/issues/confirm/{issueId}")
     public void confirmIssue(@PathVariable Long issueId) {
-//            , Principal principal) {
         issueService.confirmIssue(issueId);
     }
 
-    //    4. for host to close issue--------------------------------------------------------
+//    4. for host to close issue--------------------------------------------------------
     @PostMapping(value = "/issues/close/{issueId}")
     public void closeIssue(@PathVariable Long issueId) {
-//            , Principal principal) {
         issueService.closeIssue(issueId);
     }
 
