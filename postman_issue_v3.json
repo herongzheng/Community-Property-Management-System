@@ -32,6 +32,31 @@
 			"response": []
 		},
 		{
+			"name": "1.1 List all Issues",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/stays?host=sun",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stays"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": "sun"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "2.1 Post Issue without Principle",
 			"request": {
 				"auth": {
