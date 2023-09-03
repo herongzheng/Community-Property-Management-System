@@ -12,19 +12,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/stays?host=sun",
+					"raw": "http://localhost:8080/issues?username=haha",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"stays"
+						"issues"
 					],
 					"query": [
 						{
-							"key": "host",
-							"value": "sun"
+							"key": "username",
+							"value": "haha"
 						}
 					]
 				}
@@ -37,20 +37,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/stays?host=sun",
+					"raw": "http://localhost:8080/hoa/issues",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"stays"
-					],
-					"query": [
-						{
-							"key": "host",
-							"value": "sun"
-						}
+						"hoa",
+						"issues"
 					]
 				}
 			},
@@ -60,14 +55,7 @@
 			"name": "2.1 Post Issue without Principle",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdW4iLCJleHAiOjE2ODA0Njg3MDEsImlhdCI6MTY4MDM4MjMwMX0._cexTt-q58L8U1Ys7fjmxQfXCCiwSQY8W9lAGHIggXw",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
@@ -75,41 +63,32 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "name",
-							"value": "laiproject-stay",
+							"key": "content",
+							"value": "Plumbing issue7",
 							"type": "text"
 						},
 						{
-							"key": "address",
-							"value": "2350 Mission College Blvd #840, Santa Clara, CA",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "laiproject-stay",
-							"type": "text"
-						},
-						{
-							"key": "guest_number",
-							"value": "8",
+							"key": "username",
+							"value": "haha",
 							"type": "text"
 						},
 						{
 							"key": "images",
 							"type": "file",
-							"src": "/Users/xy/Dropbox/My Mac (xyzira)/Downloads/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1 Large.jpeg"
+							"src": "/Users/qiang/Downloads/1.jpeg"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8080/stays",
+					"raw": "http://localhost:8080/issues/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"stays"
+						"issues",
+						"create"
 					]
 				}
 			},
@@ -117,58 +96,32 @@
 		},
 		{
 			"name": "3.0 Comfirm Issue",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-length": true
+				}
+			},
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdW4iLCJleHAiOjE2ODA0Njg3MDEsImlhdCI6MTY4MDM4MjMwMX0._cexTt-q58L8U1Ys7fjmxQfXCCiwSQY8W9lAGHIggXw",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "laiproject-stay",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "2350 Mission College Blvd #840, Santa Clara, CA",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "laiproject-stay",
-							"type": "text"
-						},
-						{
-							"key": "guest_number",
-							"value": "8",
-							"type": "text"
-						},
-						{
-							"key": "images",
-							"type": "file",
-							"src": "/Users/xy/Dropbox/My Mac (xyzira)/Downloads/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1 Large.jpeg"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:8080/stays",
+					"raw": "http://localhost:8080/issues/confirm/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"stays"
+						"issues",
+						"confirm",
+						"2"
 					]
 				}
 			},
@@ -176,58 +129,33 @@
 		},
 		{
 			"name": "4.0 Close Issue",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"content-length": true
+				}
+			},
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdW4iLCJleHAiOjE2ODA0Njg3MDEsImlhdCI6MTY4MDM4MjMwMX0._cexTt-q58L8U1Ys7fjmxQfXCCiwSQY8W9lAGHIggXw",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "laiproject-stay",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "2350 Mission College Blvd #840, Santa Clara, CA",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "laiproject-stay",
-							"type": "text"
-						},
-						{
-							"key": "guest_number",
-							"value": "8",
-							"type": "text"
-						},
-						{
-							"key": "images",
-							"type": "file",
-							"src": "/Users/xy/Dropbox/My Mac (xyzira)/Downloads/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1 Large.jpeg"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:8080/stays",
+					"raw": "http://localhost:8080/issues/close/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"stays"
+						"issues",
+						"close",
+						"4"
 					]
 				}
 			},
