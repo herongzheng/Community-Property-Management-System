@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "1e63c09a-f1f6-4ab6-b08a-b4175817c92f",
+		"name": "CPMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28123251"
+	},
+	"item": [
+		{
+			"name": "1.0 List Issues by Resident without Principle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/issues?username=haha",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"issues"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "haha"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.1 List all Issues",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/hoa/issues",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hoa",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.1 Post Issue without Principle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "content",
+							"value": "Plumbing issue7",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "haha",
+							"type": "text"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "/Users/qiang/Downloads/1.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/issues/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"issues",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.0 Comfirm Issue",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-length": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/issues/confirm/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"issues",
+						"confirm",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.0 Close Issue",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"content-length": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/issues/close/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"issues",
+						"close",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
