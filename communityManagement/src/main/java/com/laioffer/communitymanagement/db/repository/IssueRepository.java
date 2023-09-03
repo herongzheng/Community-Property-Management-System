@@ -14,9 +14,11 @@ import java.util.List;
 @Repository
 public interface IssueRepository extends JpaRepository<Issue, Long> {
 
-    List<Issue> findByResident_AptNumber(String aptNumber);
+    List<Issue> findByResident_Username(String username);
 
-    Issue findByIdAndResident_AptNumber(Long issueId, String aptNumber);
+    List<Issue> findByConfirmedFalseOrderByReportDateAsc();
+    List<Issue> findByConfirmedTrueAndClosedDateIsNullOrderByReportDateAsc();
+    List<Issue> findByClosedDateIsNotNullOrderByClosedDateDesc();
 
     @Modifying
     @Query(value = "UPDATE Issue I SET I.confirmed = :confirmed WHERE I.id = :issueId")

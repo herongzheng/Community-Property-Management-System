@@ -12,10 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.*;
 
 @Service
 public class IssueService {
@@ -28,14 +31,24 @@ public class IssueService {
         this.imageUploadService = imageUploadService;
     }
 
-    //    1.0 for resident to list his/her issues-------------------------------------------------
-    public List<Issue> listIssuesByResident(String aptNumber) {
-        return issueRepository.findByResident_AptNumber(aptNumber);
+//    1. list issues
+//    1.0 for resident to list his/her issues-------------------------------------------------
+    public List<Issue> listIssuesByResident(String username) {
+        return issueRepository.findByResident_Username(username);
     }
 
 //    1.1 for host to list a resident's issues-------------------------------------------------
+    public List<Issue> listAllIssues() {
+        List<Issue> notConfirmedIssues = issueRepository.findByConfirmedFalseOrderByReportDateAsc();
+        List<Issue> confirmedNotClosedIssues = issueRepository.findByConfirmedTrueAndClosedDateIsNullOrderByReportDateAsc();
+        List<Issue> closedIssues = issueRepository.findByClosedDateIsNotNullOrderByClosedDateDesc();
+        List<Issue> allIssues = Stream.of(notConfirmedIssues, confirmedNotClosedIssues,closedIssues)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+        return allIssues;
+    }
 
-    //    2. for resident to post issue--------------------------------------------------------
+//    2. for resident to post issue--------------------------------------------------------
     @Transactional
     public void add(Issue issue, MultipartFile[] images) {
         List<IssueImage> issueImages = Arrays.stream(images)
@@ -48,7 +61,7 @@ public class IssueService {
         issueRepository.save(issue);
     }
 
-    //    3. for host to confirm issue--------------------------------------------------------
+//    3. for host to confirm issue--------------------------------------------------------
     public void confirmIssue(Long issueId) throws IssueNotExistException, IssueAlreadyConfirmedException {
         Optional<Issue> issue = issueRepository.findById(issueId);
         if (issue.equals(Optional.empty())) {
@@ -60,7 +73,7 @@ public class IssueService {
         issueRepository.updateConfirmedByIssueId(issueId, true);
     }
 
-    //    4. for host to close issue--------------------------------------------------------
+//    4. for host to close issue--------------------------------------------------------
     public void closeIssue(Long issueId) throws IssueNotExistException, IssueAlreadyClosedException {
         Optional<Issue> issue = issueRepository.findById(issueId);
         if (issue.equals(Optional.empty())) {
@@ -74,15 +87,5 @@ public class IssueService {
         }
         issueRepository.updateClosedDateByIssueId(issueId, LocalDate.now());
     }
-
-//    public Issue listByIdAndGuest(Long issueId, String aptNumber) throws IssueNotExistException {
-//        Issue issue = issueRepository.findByIdAndResident_AptNumber(issueId, aptNumber);
-//        if (issue == null) {
-//            throw new IssueNotExistException("Issue doesn't exist");
-//        }
-//        return issue;
-//    }
-
-
 
 }
