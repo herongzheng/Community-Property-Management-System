@@ -1,10 +1,12 @@
 package com.laioffer.communitymanagement;
 
+import com.laioffer.communitymanagement.db.AuthorityRepository;
+import com.laioffer.communitymanagement.db.entity.Authority;
 import com.laioffer.communitymanagement.db.entity.Issue;
 import com.laioffer.communitymanagement.db.entity.IssueImage;
 import com.laioffer.communitymanagement.db.entity.User;
-import com.laioffer.communitymanagement.db.repository.IssueRepository;
-import com.laioffer.communitymanagement.db.repository.UserRepository;
+import com.laioffer.communitymanagement.db.IssueRepository;
+import com.laioffer.communitymanagement.db.UserRepository;
 import com.laioffer.communitymanagement.service.IssueService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +25,13 @@ public class DevelopmentTester implements ApplicationRunner {
     private final UserRepository userRepository;
     private final IssueRepository issueRepository;
     private final IssueService issueService;
+    private final AuthorityRepository authorityRepository;
 
-    public DevelopmentTester(UserRepository userRepository, IssueRepository issueRepository, IssueService issueService) {
+    public DevelopmentTester(UserRepository userRepository, IssueRepository issueRepository, IssueService issueService, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.issueRepository = issueRepository;
         this.issueService = issueService;
+        this.authorityRepository = authorityRepository;
     }
 
     @Override
@@ -47,6 +51,7 @@ public class DevelopmentTester implements ApplicationRunner {
                 .setFirstName("ha")
                 .setLastName("ha");
         userRepository.save(user);
+        authorityRepository.save(new Authority("haha", "ROLE_RESIDENT"));
 
         Issue issue = new Issue()
                 .setContent("Plumbing issue")
@@ -82,6 +87,7 @@ public class DevelopmentTester implements ApplicationRunner {
                 .setFirstName("h")
                 .setLastName("a");
         userRepository.save(user2);
+        authorityRepository.save(new Authority("ha", "ROLE_RESIDENT"));
 
         Issue issue3 = new Issue()
                 .setContent("Plumbing issue3")
@@ -115,5 +121,18 @@ public class DevelopmentTester implements ApplicationRunner {
                 .setClosedDate(LocalDate.now().plusDays(1L))
                 .setResident(new User.Builder().setUsername("haha").build());
         issueRepository.save(issue6);
+
+        User hoa = new User
+                .Builder()
+                .setUsername("hoa")
+                .setPassword("111")
+                .setEnabled(true)
+                .build()
+                .setEmail("121@gmail.com")
+                .setPhoneNumber("333333")
+                .setFirstName("h")
+                .setLastName("oa");
+        userRepository.save(hoa);
+        authorityRepository.save(new Authority("hoa", "ROLE_HOA"));
     }
 }

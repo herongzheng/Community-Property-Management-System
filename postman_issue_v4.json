@@ -7,12 +7,12 @@
 	},
 	"item": [
 		{
-			"name": "1.0 List Issues by Resident without Principle",
+			"name": "1.0 List Issues without Principle",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/issues?username=haha",
+					"raw": "http://localhost:8080/issues?username=ha",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -24,28 +24,8 @@
 					"query": [
 						{
 							"key": "username",
-							"value": "haha"
+							"value": "ha"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.1 List all Issues",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/hoa/issues",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"hoa",
-						"issues"
 					]
 				}
 			},
@@ -75,7 +55,7 @@
 						{
 							"key": "images",
 							"type": "file",
-							"src": "/Users/qiang/Downloads/1.jpeg"
+							"src": []
 						}
 					]
 				},
@@ -146,7 +126,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:8080/issues/close/4",
+					"raw": "http://localhost:8080/issues/close/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -155,7 +135,7 @@
 					"path": [
 						"issues",
 						"close",
-						"4"
+						"2"
 					]
 				}
 			},
