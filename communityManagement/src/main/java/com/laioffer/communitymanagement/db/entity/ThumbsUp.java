@@ -11,7 +11,7 @@ public class ThumbsUp {
     @ManyToOne
     private Post post;
 
-    @MapsId("username")
+    @MapsId("user_username")
     @ManyToOne
     private User user;
 
