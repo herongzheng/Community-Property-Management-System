@@ -1,4 +1,4 @@
-package com.laioffer.communitymanagement.db.repository;
+package com.laioffer.communitymanagement.db;
 
 import com.laioffer.communitymanagement.db.entity.Issue;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +14,9 @@ import java.util.List;
 @Repository
 public interface IssueRepository extends JpaRepository<Issue, Long> {
 
-    List<Issue> findByResident_Username(String username);
+    List<Issue> findByResident_UsernameAndConfirmedFalseOrderByReportDateAsc(String username);
+    List<Issue> findByResident_UsernameAndConfirmedTrueAndClosedDateIsNullOrderByReportDateAsc(String username);
+    List<Issue> findByResident_UsernameAndClosedDateIsNotNullOrderByClosedDateDesc(String username);
 
     List<Issue> findByConfirmedFalseOrderByReportDateAsc();
     List<Issue> findByConfirmedTrueAndClosedDateIsNullOrderByReportDateAsc();

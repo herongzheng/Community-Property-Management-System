@@ -1,4 +1,4 @@
-package com.laioffer.communitymanagement.db.repository;
+package com.laioffer.communitymanagement.db;
 
 import com.laioffer.communitymanagement.db.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

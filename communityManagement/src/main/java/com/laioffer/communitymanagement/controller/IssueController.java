@@ -19,6 +19,12 @@ public class IssueController {
     }
 
 //    1. list issues
+//    Issues will be listed in the following order:
+//      notConfirmedIssues, confirmedNotClosedIssues and closedIssues
+//    Within the notConfirmedIssues and confirmedNotClosedIssues,
+//      the issues will be arranged in ascending order based on reportDate.
+//    Within the closedIssues, the issues will be arranged in descending order based on closedDate.
+
 //    1.0 for resident to list his/her issues-------------------------------------------------
 //    1.0.1 version without principle
     @GetMapping(value = "/issues")
@@ -30,12 +36,7 @@ public class IssueController {
 //        return issueService.listIssuesByResident(principal.getName());
 //    }
 
-//    1.1 for host to list a resident's issues-------------------------------------------------
-//    Issues will be listed in the following order:
-//      notConfirmedIssues, confirmedNotClosedIssues and closedIssues
-//    Within the notConfirmedIssues and confirmedNotClosedIssues,
-//      the issues will be arranged in ascending order based on reportDate.
-//    Within the closedIssues, the issues will be arranged in descending order based on closedDate.
+//    1.1 for host to list all residents issues-------------------------------------------------
     @GetMapping(value = "hoa/issues")
     public List<Issue> listAllIssues() {
         return issueService.listAllIssues();
