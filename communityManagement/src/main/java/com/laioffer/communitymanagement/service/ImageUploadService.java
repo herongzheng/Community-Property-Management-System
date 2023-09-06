@@ -1,6 +1,7 @@
 package com.laioffer.communitymanagement.service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.laioffer.communitymanagement.exception.AmazonS3UploadException;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,11 +25,18 @@ public class ImageUploadService {
     }
 
     public String uploadImage(MultipartFile file) {
+        String originalFileName = file.getOriginalFilename();
+        String fileExtension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+        String fileName = UUID.randomUUID().toString() + "." + fileExtension;
+
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType(file.getContentType());
+
         URL s3ObjectUrl = null;
-        String fileName = UUID.randomUUID().toString();
+
         try {
             amazonS3.putObject(new PutObjectRequest(bucketName, fileName,
-                    file.getInputStream(), null));
+                    file.getInputStream(), metadata));
             s3ObjectUrl = amazonS3.getUrl(bucketName, fileName);
         } catch (IOException exception) {
             throw new AmazonS3UploadException("Failed to upload file to AWS S3");
