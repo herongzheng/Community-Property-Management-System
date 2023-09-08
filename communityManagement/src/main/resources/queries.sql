@@ -1,3 +1,6 @@
+-- DELETE FROM user;
+INSERT INTO user(username, phone_number, enabled) values("Room001", "1234567890", 1);
+
 INSERT INTO post(id, posted_time, content, is_important, user_id, reply_to, likes)
 values(1, "2023-08-22 23:28:08", "This is the first post", 1, "John", null, 0);
 INSERT INTO post(id, posted_time, content, is_important, user_id, reply_to, likes)
