@@ -38,6 +38,16 @@ public class Issue {
     private List<IssueImage> images;
     public Issue() {}
 
+    public Issue(Long id, String content, LocalDate reportDate, LocalDate closedDate, boolean confirmed, User resident, List<IssueImage> images) {
+        this.id = id;
+        this.content = content;
+        this.reportDate = reportDate;
+        this.closedDate = closedDate;
+        this.confirmed = confirmed;
+        this.resident = resident;
+        this.images = images;
+    }
+
     public Long getId() {
         return id;
     }
@@ -54,12 +64,18 @@ public class Issue {
         return closedDate;
     }
 
+    public Issue setClosedDate(LocalDate closedDate) {
+        this.closedDate = closedDate;
+        return this;
+    }
+
     public boolean isConfirmed() {
         return confirmed;
     }
 
-    public void setConfirmed(boolean confirmed) {
+    public Issue setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
+        return this;
     }
 
     public User getResident() {

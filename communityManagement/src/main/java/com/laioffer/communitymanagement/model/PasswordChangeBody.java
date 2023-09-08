@@ -1,5 +1,6 @@
 package com.laioffer.communitymanagement.model;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record PasswordChangeBody(@JsonProperty("old_password") String oldPassword,
