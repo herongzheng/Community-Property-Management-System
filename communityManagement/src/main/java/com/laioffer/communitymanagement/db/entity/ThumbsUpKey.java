@@ -1,13 +1,11 @@
 package com.laioffer.communitymanagement.db.entity;
 
-import com.laioffer.communitymanagement.DevelopmentTester;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Objects;
 
 @Embeddable
 public class ThumbsUpKey implements Serializable {

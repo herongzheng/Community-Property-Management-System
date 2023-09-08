@@ -44,7 +44,7 @@ public class ChatController {
 //        backend should update the like_amount field and add a record into the thumbsUp table
 //        and return the current like number for the postId
 //        chatService.addLikeToPost(postId, principal.getName());
-        chatService.addLikeToPost(postId, "Room 001");
+        chatService.addLikeToPost(postId, "Room001");
     }
     /*
      * Once any user/HOA clicks to remove the like they did, the frontend will update the like number
@@ -56,7 +56,7 @@ public class ChatController {
 //        backend should update the like_amount field and remove a record in the thumbsUp table
 //        and return the current thumbsup number for the postId
 //        chatService.removeLikeFromPost(postId, principal.getName());
-        chatService.removeLikeFromPost(postId, "Room 001");
+        chatService.removeLikeFromPost(postId, "Room001");
     }
 
     @PostMapping("/chat/create")
@@ -72,7 +72,7 @@ public class ChatController {
                 .setContent(content)
                 .setPostedTime(postedTime)
 //                .setUser(new User().setUsername(principal.getName()))
-                .setUser(new User().setUsername("Room 001"))
+                .setUser(new User().setUsername("Room001"))
                 .setImportant(false)
                 .setLikes(0);
         chatService.createAPost(post);
@@ -83,7 +83,7 @@ public class ChatController {
 * Once a users clicks on "delete", because frontend already has all the posts stored in the state,
 *  you can just delete the corresponding record in data and re-render; at the same time, it sends
 * a POST request to the backend to delete this comment and its replies*/
-    @PostMapping("/chat/delete/{postId}")
+    @DeleteMapping("/chat/delete/{postId}")
     public void delete(@PathVariable long postId, Principal principal) {
         chatService.deleteAPost(postId);
     }
@@ -106,7 +106,7 @@ public class ChatController {
                 .setContent(content)
                 .setPostedTime(postedTime)
 //                .setUser(new User().setUsername(principal.getName()))
-                .setUser(new User().setUsername("Room 003"))
+                .setUser(new User().setUsername("Room003"))
                 .setImportant(false)
                 .setLikes(0)
                 .setReplyTo(replyTo);
