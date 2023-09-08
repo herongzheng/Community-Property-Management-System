@@ -4,7 +4,6 @@ import com.laioffer.communitymanagement.db.AuthorityRepository;
 import com.laioffer.communitymanagement.db.UserRepository;
 import com.laioffer.communitymanagement.db.entity.Authority;
 import com.laioffer.communitymanagement.db.entity.User;
-import com.laioffer.communitymanagement.exception.UserAlreadyExistException;
 import com.laioffer.communitymanagement.model.UserRole;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

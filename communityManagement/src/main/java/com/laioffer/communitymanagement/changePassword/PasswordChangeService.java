@@ -2,15 +2,11 @@ package com.laioffer.communitymanagement.changePassword;
 
 import com.laioffer.communitymanagement.db.entity.User;
 import com.laioffer.communitymanagement.db.UserRepository;
-import com.laioffer.communitymanagement.exception.InvalidOldPasswordException;
-import com.laioffer.communitymanagement.exception.UserNotExistException;
 import com.laioffer.communitymanagement.model.PasswordChangeBody;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

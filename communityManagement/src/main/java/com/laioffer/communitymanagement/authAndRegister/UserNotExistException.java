@@ -1,4 +1,4 @@
-package com.laioffer.communitymanagement.exception;
+package com.laioffer.communitymanagement.authAndRegister;
 
 public class UserNotExistException extends RuntimeException {
     public UserNotExistException(String message) {

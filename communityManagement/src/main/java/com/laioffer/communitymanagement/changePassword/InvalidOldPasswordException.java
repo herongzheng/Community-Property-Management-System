@@ -1,4 +1,4 @@
-package com.laioffer.communitymanagement.exception;
+package com.laioffer.communitymanagement.changePassword;
 
 public class InvalidOldPasswordException extends RuntimeException {
     public InvalidOldPasswordException(String message) {
