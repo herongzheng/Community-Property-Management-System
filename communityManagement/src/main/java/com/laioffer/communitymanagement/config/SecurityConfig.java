@@ -42,10 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/register/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
-                .antMatchers("/stays").hasAuthority("ROLE_HOST")
-                .antMatchers("/stays/*").hasAuthority("ROLE_HOST")
+//                .antMatchers("/stays").hasAuthority("ROLE_HOST")
+//                .antMatchers("/stays/*").hasAuthority("ROLE_HOST")
                 .anyRequest().authenticated()
                 .and()
                 .csrf()

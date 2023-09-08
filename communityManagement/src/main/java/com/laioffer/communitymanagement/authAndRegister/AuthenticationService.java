@@ -1,10 +1,13 @@
-package com.laioffer.communitymanagement.authentication;
+package com.laioffer.communitymanagement.authAndRegister;
 
+import com.laioffer.communitymanagement.InitializeUsers;
 import com.laioffer.communitymanagement.exception.UserNotExistException;
 import com.laioffer.communitymanagement.model.Token;
 import com.laioffer.communitymanagement.db.entity.User;
 import com.laioffer.communitymanagement.model.UserRole;
 import com.laioffer.communitymanagement.util.JwtUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,7 +21,6 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
-
     public AuthenticationService(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
@@ -30,11 +32,11 @@ public class AuthenticationService {
         try {
             auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         } catch (AuthenticationException exception) {
-            throw new UserNotExistException("User Doesn't Exist");
+            throw new UserNotExistException("The user name or password is incorrect");
         }
 
         if (auth == null || !auth.isAuthenticated() || !auth.getAuthorities().contains(new SimpleGrantedAuthority(role.name()))) {
-            throw new UserNotExistException("User Doesn't Exist");
+            throw new UserNotExistException("The user name or password is incorrect");
         }
         return new Token(jwtUtil.generateToken(user.getUsername()));
     }

@@ -20,7 +20,7 @@ public class JwtUtil {
                 .setClaims(new HashMap<>())
                 .setSubject(subject)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 864000000))
+                .setExpiration(new Date(System.currentTimeMillis() + 172800000))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }

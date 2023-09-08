@@ -1,4 +1,4 @@
-package com.laioffer.communitymanagement.authentication;
+package com.laioffer.communitymanagement.authAndRegister;
 
 import com.laioffer.communitymanagement.model.Token;
 import com.laioffer.communitymanagement.db.entity.User;

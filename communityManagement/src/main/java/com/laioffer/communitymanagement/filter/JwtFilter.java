@@ -2,7 +2,7 @@ package com.laioffer.communitymanagement.filter;
 
 
 import com.laioffer.communitymanagement.db.entity.Authority;
-import com.laioffer.communitymanagement.repository.AuthorityRepository;
+import com.laioffer.communitymanagement.db.AuthorityRepository;
 import com.laioffer.communitymanagement.util.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -41,7 +41,6 @@ public class JwtFilter extends OncePerRequestFilter {
    @Override
    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
        final String authorizationHeader = request.getHeader(HEADER);
-
 
        String jwt = null;
        if (authorizationHeader != null && authorizationHeader.startsWith(PREFIX)) {
