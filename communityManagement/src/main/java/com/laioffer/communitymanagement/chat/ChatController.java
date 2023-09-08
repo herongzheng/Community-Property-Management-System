@@ -43,8 +43,7 @@ public class ChatController {
     public void likeAPost(@PathVariable long postId, Principal principal) {
 //        backend should update the like_amount field and add a record into the thumbsUp table
 //        and return the current like number for the postId
-//        chatService.addLikeToPost(postId, principal.getName());
-        chatService.addLikeToPost(postId, "Room001");
+        chatService.addLikeToPost(postId, principal.getName());
     }
     /*
      * Once any user/HOA clicks to remove the like they did, the frontend will update the like number
@@ -55,8 +54,7 @@ public class ChatController {
     public void removeTheLike(@PathVariable long postId, Principal principal) {
 //        backend should update the like_amount field and remove a record in the thumbsUp table
 //        and return the current thumbsup number for the postId
-//        chatService.removeLikeFromPost(postId, principal.getName());
-        chatService.removeLikeFromPost(postId, "Room001");
+        chatService.removeLikeFromPost(postId, principal.getName());
     }
 
     @PostMapping("/chat/create")
@@ -71,8 +69,7 @@ public class ChatController {
         Post post = new Post()
                 .setContent(content)
                 .setPostedTime(postedTime)
-//                .setUser(new User().setUsername(principal.getName()))
-                .setUser(new User().setUsername("Room001"))
+                .setUser(new User().setUsername(principal.getName()))
                 .setImportant(false)
                 .setLikes(0);
         chatService.createAPost(post);
@@ -84,7 +81,7 @@ public class ChatController {
 *  you can just delete the corresponding record in data and re-render; at the same time, it sends
 * a POST request to the backend to delete this comment and its replies*/
     @DeleteMapping("/chat/delete/{postId}")
-    public void delete(@PathVariable long postId, Principal principal) {
+    public void delete(@PathVariable long postId) {
         chatService.deleteAPost(postId);
     }
 
@@ -105,8 +102,7 @@ public class ChatController {
         Post post = new Post()
                 .setContent(content)
                 .setPostedTime(postedTime)
-//                .setUser(new User().setUsername(principal.getName()))
-                .setUser(new User().setUsername("Room003"))
+                .setUser(new User().setUsername(principal.getName()))
                 .setImportant(false)
                 .setLikes(0)
                 .setReplyTo(replyTo);
