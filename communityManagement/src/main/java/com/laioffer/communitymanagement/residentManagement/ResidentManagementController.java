@@ -20,8 +20,8 @@ public class ResidentManagementController {
     }
 
     @PostMapping("/manage/residents/new_resident")
-    public void deleteAndCreateUser(Principal principal) {
-        userService.deleteUserAndCreate(principal.getName());
+    public User deleteAndCreateUser(Principal principal) {
+        return userService.deleteUserAndCreate(principal.getName());
 
     }
 }

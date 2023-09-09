@@ -20,7 +20,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUserAndCreate(String username) {
+    public User deleteUserAndCreate(String username) {
 
 
         // Delete from User table
@@ -32,6 +32,6 @@ public class UserService {
                 .setPassword("123456")
                 .build();
 
-        userRepository.save(newUser);
+        return userRepository.save(newUser);
     }
 }
