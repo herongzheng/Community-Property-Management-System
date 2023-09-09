@@ -11,10 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class ChatController {
@@ -55,6 +52,12 @@ public class ChatController {
 //        backend should update the like_amount field and remove a record in the thumbsUp table
 //        and return the current thumbsup number for the postId
         chatService.removeLikeFromPost(postId, principal.getName());
+    }
+
+    // get the ids of post/reply that are liked by this user
+    @GetMapping("/chat/liked")
+    public Set<Long> getLikedPostIds(Principal principal) {
+        return chatService.getLikedIds(principal.getName());
     }
 
     @PostMapping("/chat/create")

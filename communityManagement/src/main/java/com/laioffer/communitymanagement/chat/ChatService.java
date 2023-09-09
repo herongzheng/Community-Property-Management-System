@@ -10,7 +10,10 @@ import com.laioffer.communitymanagement.db.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatService {
@@ -53,6 +56,10 @@ public class ChatService {
     public void removeLikeFromPost(Long postId, String username) {
         thumbsupRepository.deleteByPost_idAndUser_username(postId, username);
         postRepository.removeALike(postId);
+    }
+
+    public Set<Long> getLikedIds(String username) {
+        return thumbsupRepository.findLikedIds(username);
     }
 
     // in controller a post instance is built
