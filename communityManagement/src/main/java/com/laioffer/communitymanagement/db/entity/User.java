@@ -112,10 +112,6 @@ public class User {
         return this;
     }
 
-    public User setUsername(String username) {
-        this.username = username;
-        return this;
-    }
 
     public static class Builder {
         @JsonProperty("username")
