@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 public class ResidentManagementController {
 
-
+    @Autowired
     private UserService userService;
 
     @GetMapping("/manage/residents")
@@ -19,9 +19,9 @@ public class ResidentManagementController {
         return userService.findAllResidents();
     }
 
-    @PostMapping("/manage/residents/new_resident")
-    public User deleteAndCreateUser(Principal principal) {
-        return userService.deleteUserAndCreate(principal.getName());
+    @PostMapping("/manage/residents/new_resident/{username}")
+    public User deleteAndCreateUser(@PathVariable String username) {
+        return userService.deleteUserAndCreate(username);
 
     }
 }

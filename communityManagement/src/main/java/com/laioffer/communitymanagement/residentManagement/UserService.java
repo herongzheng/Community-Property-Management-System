@@ -2,6 +2,7 @@ package com.laioffer.communitymanagement.residentManagement;
 
 
 import com.laioffer.communitymanagement.db.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.laioffer.communitymanagement.db.UserRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-
+    @Autowired
     private UserRepository userRepository;
 
 
