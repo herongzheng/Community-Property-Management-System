@@ -25,7 +25,8 @@ public class InitializeUsers implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         // initialize with 5 residents
         for (int i = 1; i < 6; i++) {
-            User user = new User().setUsername("Room00" + i).setPassword("123456").setAptNumber("Room00" + i);
+            User user = new User().setUsername("Room00" + i).setPassword("123456").setAptNumber("Room00" + i)
+                    .setEmail("Room00" + i + "@gmail.com");
             registerService.add(user, UserRole.ROLE_RESIDENT);
         }
 
@@ -34,7 +35,8 @@ public class InitializeUsers implements ApplicationRunner {
         HOAUsernames.add("Ashley");
         HOAUsernames.add("Brad");
         for (int i = 0; i < 2; i++) {
-            User user = new User().setUsername(HOAUsernames.get(i)).setPassword("123456").setAptNumber("Room000");
+            User user = new User().setUsername(HOAUsernames.get(i)).setPassword("123456").setAptNumber("Room000")
+                    .setEmail(HOAUsernames.get(i) + "@gmail.com");
             registerService.add(user, UserRole.ROLE_HOA);
         }
 
