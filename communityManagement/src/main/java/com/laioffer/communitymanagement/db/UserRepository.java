@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     void updateUserInfo(String username, String newPassword, String email, String phoneNumber, String firstName, String lastName);
 
 
-    @Query(value = "SELECT * FROM user WHERE apt_number != '000' ORDER BY apt_number DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM user WHERE apt_number != '000' ORDER BY apt_number ASC", nativeQuery = true)
     List<User> selectAllResidentsOrdered();
 
     @Query(value = "SELECT * FROM user WHERE username = ?1", nativeQuery = true)

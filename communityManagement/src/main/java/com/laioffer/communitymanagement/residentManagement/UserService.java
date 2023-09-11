@@ -30,6 +30,7 @@ public class UserService {
         // Create new User in User table using builder pattern
         User newUser = new User.Builder()
                 .setUsername(username)
+                .setAptNumber(username)
                 .setPassword("123456")
                 .build();
 

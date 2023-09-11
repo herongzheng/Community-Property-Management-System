@@ -160,6 +160,11 @@ public class User {
             return this;
         }
 
+        public Builder setAptNumber(String aptNumber) {
+            this.aptNumber = aptNumber;
+            return this;
+        }
+
         public Builder setPassword(String password) {
             this.password = password;
             return this;
