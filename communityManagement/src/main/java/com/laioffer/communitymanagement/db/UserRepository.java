@@ -25,7 +25,5 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "SELECT * FROM user WHERE username = ?1", nativeQuery = true)
     User selectUser(String username);
 
-
-    void deleteByUsername(String username);
 }
 

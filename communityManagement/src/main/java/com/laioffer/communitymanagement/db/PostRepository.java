@@ -47,5 +47,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(value = "UPDATE post SET is_important = false WHERE id = ?1", nativeQuery = true)
     void removeImportance(Long postId);
 
+    @Query(value = "SELECT id FROM post WHERE user_id = ?1", nativeQuery = true)
+    List<Long> findPostIdByUsername(String username);
 
 }
