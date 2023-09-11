@@ -43,8 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
-                .antMatchers(HttpMethod.GET, "/manage/residents").permitAll()
-                .antMatchers(HttpMethod.POST, "/manage/residents/new_resident").hasAuthority("ROLE_HOST")
+                .antMatchers(HttpMethod.POST, "/manage/residents/new_resident/*").permitAll()
 //                .antMatchers("/stays").hasAuthority("ROLE_HOST")
 //                .antMatchers("/stays/*").hasAuthority("ROLE_HOST")
                 .anyRequest().authenticated()

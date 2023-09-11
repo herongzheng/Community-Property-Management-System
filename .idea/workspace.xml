@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33142a0b-6090-4388-9b03-67f6e01b9b6c" name="Changes" comment="" />
+    <list default="true" id="a09f0b7b-413f-4a4d-86ba-75dceb85f093" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,10 +13,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
-  <component name="ProjectId" id="2VB1Vq47MtUqXHEJLNUmx55TPdY" />
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/cpmsfe/package.json" />
+  </component>
+  <component name="ProjectId" id="2VEQ7WVTTAkg8m6yuBcKfddayno" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -26,8 +26,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "BackendPengrui",
-    "last_opened_file_path": "/Users/pengrui_f/Desktop/flag/Community-Property-Management-System",
+    "last_opened_file_path": "/Users/2156817216qq.com/Desktop/flag/Community-Property-Management-System",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -35,12 +34,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="33142a0b-6090-4388-9b03-67f6e01b9b6c" name="Changes" comment="" />
-      <created>1694294685119</created>
+      <changelist id="a09f0b7b-413f-4a4d-86ba-75dceb85f093" name="Changes" comment="" />
+      <created>1694398596035</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1694294685119</updated>
-      <workItem from="1694294686253" duration="48000" />
+      <updated>1694398596035</updated>
+      <workItem from="1694398599586" duration="144000" />
     </task>
     <servers />
   </component>

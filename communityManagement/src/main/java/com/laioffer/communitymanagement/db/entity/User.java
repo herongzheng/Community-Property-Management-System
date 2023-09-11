@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -130,6 +129,17 @@ public class User {
         @JsonProperty("phone_number")
         private String phoneNumber;
 
+        @JsonIgnore
+        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+        private List<Post> posts;
+
+        @JsonIgnore
+        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+        private List<Issue> issues;
+
+        @JsonIgnore
+        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+        private List<Package> packages;
 
         public String getUsername() {
             return username;
