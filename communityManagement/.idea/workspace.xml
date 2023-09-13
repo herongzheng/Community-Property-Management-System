@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="75f97b00-6855-43c5-b175-a7544ed587aa" name="Changes" comment="add package and message service" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="communityManagement" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Record" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1ca470ee-c67c-4238-9138-31cb9437e193" />
+        <option name="url" value="git@github.com:herongzheng/Community-Property-Management-System.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2UEKe065HFU7jMB9lFAJQ43yBnj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/LaiOffer/Projects/Community-Property-Management-System/communityManagement/src/main/resources/queries.sql",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "spring.configuration.checksum": "a1aaf5340b3314b8ca724fc0c6d95574",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql",
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.laioffer.communitymanagement.changePassword" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.laioffer.communitymanagement.fakeControllers" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.CommunityManagementApplication">
+    <configuration name="communityManagement [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="communityManagement [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="CommunityManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="communityManagement.main" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.laioffer.communitymanagement.CommunityManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.communityManagement [clean]" />
+        <item itemvalue="Gradle.communityManagement [build]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="75f97b00-6855-43c5-b175-a7544ed587aa" name="Changes" comment="" />
+      <created>1692499392191</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692499392191</updated>
+      <workItem from="1692499395910" duration="13351000" />
+      <workItem from="1692558091038" duration="5111000" />
+      <workItem from="1692653681451" duration="657000" />
+      <workItem from="1692927738506" duration="622000" />
+      <workItem from="1692991727583" duration="1505000" />
+      <workItem from="1693187918968" duration="67285000" />
+      <workItem from="1693500320981" duration="12607000" />
+      <workItem from="1693587357726" duration="5369000" />
+      <workItem from="1693762993980" duration="58073000" />
+      <workItem from="1693965745792" duration="621000" />
+      <workItem from="1693974450014" duration="10930000" />
+      <workItem from="1694188004297" duration="39288000" />
+      <workItem from="1694543114450" duration="481000" />
+      <workItem from="1694564960416" duration="10157000" />
+      <workItem from="1694620824950" duration="9604000" />
+    </task>
+    <task id="LOCAL-00001" summary="initialize backend project">
+      <created>1692559700473</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692559700473</updated>
+    </task>
+    <task id="LOCAL-00002" summary="create the data model and the relationship b/w tables">
+      <created>1693208755112</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693208755112</updated>
+    </task>
+    <task id="LOCAL-00003" summary="data model changes">
+      <created>1693247598549</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693247598549</updated>
+    </task>
+    <task id="LOCAL-00004" summary="place the data model into right place">
+      <created>1693248646808</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1693248646808</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update the data model">
+      <created>1693252395153</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693252395153</updated>
+    </task>
+    <task id="LOCAL-00006" summary="build mock server to return fake data to frontend">
+      <created>1693422622859</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693422622859</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update the ChatController">
+      <created>1693451126717</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693451126717</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update AWS S3 related">
+      <created>1693587789531</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693587789531</updated>
+    </task>
+    <task id="LOCAL-00009" summary="implement the service of chat">
+      <created>1693946548285</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693946548285</updated>
+    </task>
+    <task id="LOCAL-00010" summary=".gradle files change">
+      <created>1694122075643</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1694122075643</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update authentication config and change password service">
+      <created>1694199465268</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1694199465268</updated>
+    </task>
+    <task id="LOCAL-00012" summary="reorganize folders">
+      <created>1694199822717</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1694199822717</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update Initializer">
+      <created>1694201279545</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1694201279545</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update chat service and authentication to let them work properly">
+      <created>1694203054659</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1694203054659</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add functionality to get all liked post/reply ids by a user">
+      <created>1694240962715</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1694240962715</updated>
+    </task>
+    <task id="LOCAL-00016" summary="misc files commit">
+      <created>1694450342731</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1694450342731</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update resident management service">
+      <created>1694464045032</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1694464045032</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add in the resident management service">
+      <created>1694467402728</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1694467402728</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add in the issue report service">
+      <created>1694568355968</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1694568355968</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update issue service">
+      <created>1694621009451</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1694621009451</updated>
+    </task>
+    <task id="LOCAL-00021" summary="add package and message service">
+      <created>1694633391123</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1694633391123</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initialize backend project" />
+    <MESSAGE value="create the data model and the relationship b/w tables" />
+    <MESSAGE value="data model changes" />
+    <MESSAGE value="place the data model into right place" />
+    <MESSAGE value="update the data model" />
+    <MESSAGE value="build mock server to return fake data to frontend" />
+    <MESSAGE value="update the ChatController" />
+    <MESSAGE value="update AWS S3 related" />
+    <MESSAGE value="implement the service of chat" />
+    <MESSAGE value=".gradle files change" />
+    <MESSAGE value="update authentication config and change password service" />
+    <MESSAGE value="reorganize folders" />
+    <MESSAGE value="update Initializer" />
+    <MESSAGE value="update chat service and authentication to let them work properly" />
+    <MESSAGE value="add functionality to get all liked post/reply ids by a user" />
+    <MESSAGE value="misc files commit" />
+    <MESSAGE value="update resident management service" />
+    <MESSAGE value="add in the resident management service" />
+    <MESSAGE value="add in the issue report service" />
+    <MESSAGE value="update issue service" />
+    <MESSAGE value="add package and message service" />
+    <option name="LAST_COMMIT_MESSAGE" value="add package and message service" />
+  </component>
+</project>
