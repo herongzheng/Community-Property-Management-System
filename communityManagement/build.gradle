@@ -26,6 +26,7 @@ dependencies {
 
 	//	add aws dependency
 	implementation 'com.amazonaws:aws-java-sdk:1.11.133'
+
 	//	add cache-related dependencies
 	implementation 'com.github.ben-manes.caffeine:caffeine:3.+'
 	implementation 'org.springframework.boot:spring-boot-starter-cache'

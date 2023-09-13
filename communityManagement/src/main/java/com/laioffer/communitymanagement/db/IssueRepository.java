@@ -13,11 +13,11 @@ import java.util.List;
 public interface IssueRepository extends JpaRepository<Issue, Long> {
     List<Issue> findByResident_UsernameAndConfirmedFalseOrderByReportDateDesc(String username);
     List<Issue> findByResident_UsernameAndConfirmedTrueAndClosedDateIsNullOrderByReportDateDesc(String username);
-    List<Issue> findByResident_UsernameAndClosedDateIsNotNullOrderByClosedDateDesc(String username);
+    List<Issue> findByResident_UsernameAndClosedDateIsNotNullOrderByClosedDateDescReportDateDesc(String username);
 
     List<Issue> findByConfirmedFalseOrderByReportDateDesc();
     List<Issue> findByConfirmedTrueAndClosedDateIsNullOrderByReportDateDesc();
-    List<Issue> findByClosedDateIsNotNullOrderByClosedDateDesc();
+    List<Issue> findByClosedDateIsNotNullOrderByClosedDateDescReportDateDesc();
 
     @Query(value = "SELECT id FROM issue WHERE tenant_id = ?1", nativeQuery = true)
     List<Long> findIssueIdByUsername(String username);

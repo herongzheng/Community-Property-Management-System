@@ -43,6 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/packages").hasAuthority("ROLE_HOA")
+                .antMatchers(HttpMethod.POST, "/messages/**").hasAuthority("ROLE_RESIDENT")
+                .antMatchers(HttpMethod.POST, "/packages/**").hasAuthority("ROLE_HOA")
 //                .antMatchers("/stays").hasAuthority("ROLE_HOST")
 //                .antMatchers("/stays/*").hasAuthority("ROLE_HOST")
                 .anyRequest().authenticated()

@@ -37,7 +37,7 @@ public class IssueService {
     public List<Issue> listIssuesByResident(String username) {
         List<Issue> notConfirmedIssues = issueRepository.findByResident_UsernameAndConfirmedFalseOrderByReportDateDesc(username);
         List<Issue> confirmedNotClosedIssues = issueRepository.findByResident_UsernameAndConfirmedTrueAndClosedDateIsNullOrderByReportDateDesc(username);
-        List<Issue> closedIssues = issueRepository.findByResident_UsernameAndClosedDateIsNotNullOrderByClosedDateDesc(username);
+        List<Issue> closedIssues = issueRepository.findByResident_UsernameAndClosedDateIsNotNullOrderByClosedDateDescReportDateDesc(username);
         List<Issue> allIssues = Stream.of(notConfirmedIssues, confirmedNotClosedIssues,closedIssues)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
@@ -49,7 +49,7 @@ public class IssueService {
     public List<Issue> listAllIssues() {
         List<Issue> notConfirmedIssues = issueRepository.findByConfirmedFalseOrderByReportDateDesc();
         List<Issue> confirmedNotClosedIssues = issueRepository.findByConfirmedTrueAndClosedDateIsNullOrderByReportDateDesc();
-        List<Issue> closedIssues = issueRepository.findByClosedDateIsNotNullOrderByClosedDateDesc();
+        List<Issue> closedIssues = issueRepository.findByClosedDateIsNotNullOrderByClosedDateDescReportDateDesc();
         List<Issue> allIssues = Stream.of(notConfirmedIssues, confirmedNotClosedIssues,closedIssues)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());

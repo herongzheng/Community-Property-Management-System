@@ -7,6 +7,9 @@ import com.laioffer.communitymanagement.issue.IssueAlreadyClosedException;
 import com.laioffer.communitymanagement.issue.IssueAlreadyConfirmedException;
 import com.laioffer.communitymanagement.issue.IssueNotConfirmedException;
 import com.laioffer.communitymanagement.issue.IssueNotExistException;
+import com.laioffer.communitymanagement.packageAndMessage.PackageAlreadyPickedUpException;
+import com.laioffer.communitymanagement.packageAndMessage.PackageNotExistException;
+import com.laioffer.communitymanagement.packageAndMessage.ResidentNotFoundException;
 import com.laioffer.communitymanagement.util.AmazonS3UploadException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,5 +57,20 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(AmazonS3UploadException.class)
     public final ResponseEntity<String> handleAmazonS3UploadExceptions(Exception ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(ResidentNotFoundException.class)
+    public final ResponseEntity<String> handleResidentNotFoundException(Exception ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PackageNotExistException.class)
+    public final ResponseEntity<String> handlePackageNotExistException(Exception ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PackageAlreadyPickedUpException.class)
+    public final ResponseEntity<String> handlePackageAlreadyPickedUpException(Exception ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

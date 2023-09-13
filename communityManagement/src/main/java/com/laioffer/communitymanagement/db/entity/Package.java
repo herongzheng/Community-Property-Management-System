@@ -76,4 +76,14 @@ public class Package {
         isRead = read;
         return this;
     }
+
+    public Package setReceivedDate(LocalDate receivedDate) {
+        this.receivedDate = receivedDate;
+        return this;
+    }
+
+    public Package setResident(User resident) {
+        this.resident = resident;
+        return this;
+    }
 }
