@@ -76,6 +76,7 @@ public class IssueService {
     }
 
     //    3. for host to confirm issue--------------------------------------------------------
+    @Transactional
     @Caching(evict = {@CacheEvict(value = "resident_issues", allEntries = true), @CacheEvict(value = "all_issues", allEntries = true)})
     public void confirmIssue(Long issueId) throws IssueNotExistException, IssueAlreadyConfirmedException {
         Optional<Issue> issue = issueRepository.findById(issueId);
@@ -89,6 +90,7 @@ public class IssueService {
     }
 
     //    4. for host to close issue--------------------------------------------------------
+    @Transactional
     @Caching(evict = {@CacheEvict(value = "resident_issues", allEntries = true), @CacheEvict(value = "all_issues", allEntries = true)})
     public void closeIssue(Long issueId) throws IssueNotExistException, IssueAlreadyClosedException {
         Optional<Issue> issue = issueRepository.findById(issueId);

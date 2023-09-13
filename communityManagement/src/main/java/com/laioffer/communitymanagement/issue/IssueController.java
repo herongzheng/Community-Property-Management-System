@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -41,10 +42,12 @@ public class IssueController {
     //    2. for resident to post issue
     @PostMapping("/issues/create")
     public void addIssue(
+            @RequestParam("title") String title,
             @RequestParam("content") String content,
             @RequestParam(value = "images", required = false) MultipartFile[] images,
             Principal principal) {
         Issue issue = new Issue()
+                .setTitle(title)
                 .setContent(content)
                 .setReportDate(LocalDate.now())
                 .setResident(new User.Builder().setUsername(principal.getName()).build());
@@ -56,6 +59,7 @@ public class IssueController {
     }
 
     //    3. for host to confirm issue
+
     @PostMapping(value = "/issues/confirm/{issueId}")
     public void confirmIssue(@PathVariable Long issueId) {
         issueService.confirmIssue(issueId);

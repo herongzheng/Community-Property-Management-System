@@ -20,6 +20,7 @@ public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
     private String content;
     @JsonProperty("report_date")
     private LocalDate reportDate;
@@ -65,6 +66,11 @@ public class Issue {
         return images;
     }
 
+    public Issue setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
     public Issue setContent(String content) {
         this.content = content;
         return this;
@@ -90,7 +96,13 @@ public class Issue {
         return this;
     }
 
-    public void setImages(List<IssueImage> images) {
+    public Issue setImages(List<IssueImage> images) {
         this.images = images;
+        return this;
+    }
+
+
+    public String getTitle() {
+        return title;
     }
 }
