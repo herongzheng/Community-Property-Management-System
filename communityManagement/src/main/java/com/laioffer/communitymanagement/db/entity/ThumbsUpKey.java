@@ -1,19 +1,23 @@
 package com.laioffer.communitymanagement.db.entity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.Arrays;
 
 @Embeddable
 public class ThumbsUpKey implements Serializable {
     private Long post_id;
-    private String username;
+    private String user_username;
 
+    private static final Logger logger = LoggerFactory.getLogger(ThumbsUpKey.class);
     public ThumbsUpKey() {}
 
-    public ThumbsUpKey(Long post_id, String username) {
+    public ThumbsUpKey(Long post_id, String user_username) {
         this.post_id = post_id;
-        this.username = username;
+        this.user_username = user_username;
     }
 
     @Override
@@ -21,19 +25,21 @@ public class ThumbsUpKey implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ThumbsUpKey another = (ThumbsUpKey) o;
-        return Objects.equals(post_id, another.post_id) && Objects.equals(username, another.username);
+        return post_id.equals(another.post_id) &&
+                user_username.equals(another.user_username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(post_id, username);
+//        return Objects.hash(post_id, username);
+        return Arrays.deepHashCode(new Object[] {post_id, user_username});
     }
 
     public Long getPost_id() {
         return post_id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUser_username() {
+        return user_username;
     }
 }

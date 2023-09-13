@@ -41,6 +41,10 @@ public class User {
         this.phoneNumber = builder.phoneNumber;
     }
 
+    public User setUsername(String username) {
+        this.username = username;
+        return this;
+    }
     public String getUsername() {
         return username;
     }
@@ -109,8 +113,11 @@ public class User {
     }
 
     public static class Builder {
+        @JsonProperty("username")
         private String username;
+        @JsonProperty("password")
         private String password;
+        @JsonProperty("enabled")
         private boolean enabled;
         @JsonProperty("first_name")
         private String firstName;
@@ -149,6 +156,11 @@ public class User {
 
         public Builder setUsername(String username) {
             this.username = username;
+            return this;
+        }
+
+        public Builder setAptNumber(String aptNumber) {
+            this.aptNumber = aptNumber;
             return this;
         }
 
