@@ -18,4 +18,16 @@ spring:
     password: ${DATABASE_PASSWORD:secret}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  cache:
+    caffeine:
+      spec: expireAfterAccess=60s
+
 #################################################################################################
+
+aws:
+  access-key: Your IAM access key
+  secret-key: Your IAM secret key
+  bucket-name: Your AWS S3 bucket name
+  region: Your AWS region code
+
+

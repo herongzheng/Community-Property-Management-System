@@ -16,6 +16,11 @@ public class IssueImage {
 
     public IssueImage() {}
 
+    public IssueImage(String url, Issue issue) {
+        this.url = url;
+        this.issue = issue;
+    }
+
     public String getUrl() {
         return url;
     }
