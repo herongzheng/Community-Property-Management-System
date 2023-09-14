@@ -29,7 +29,7 @@ const ListItem = ({ item, index }) => (
   </List.Item>
 );
 
-const MessagePage = ({ onOpen }) => {
+const MessagePage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

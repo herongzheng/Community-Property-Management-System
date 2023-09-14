@@ -1,7 +1,6 @@
 import React from "react";
 import { Tabs } from "antd";
 import IssueListH from "./IssueListH";
-import Residents from "./Residents";
 import ChatPage from "./ChatPage";
 import PackagesPage from "./PackagesPage";
 import ResidentManagementPage from "./ResidentManagementPage";
