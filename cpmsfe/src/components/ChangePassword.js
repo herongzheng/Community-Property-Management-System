@@ -21,7 +21,7 @@ const ChangePasswordPage = (props) => {
         );
         form.setFields([
           {
-            name: "oldPassword",
+            name: "old_password",
             errors: ["Incorrect old password!"],
           },
         ]);
@@ -38,13 +38,13 @@ const ChangePasswordPage = (props) => {
       <Form form={form} onFinish={onFinish}>
         <Form.Item
           name="username"
-          label={props.asHost ? "Last Name" : "Room Number"}
+          label={props.asHost ? "User name" : "Room Number"}
         >
           <Input placeholder={localStorage.getItem("username")} disabled />
         </Form.Item>
 
         <Form.Item
-          name="oldPassword"
+          name="old_password"
           rules={[
             { required: true, message: "Please input your old password!" },
           ]}
@@ -54,7 +54,7 @@ const ChangePasswordPage = (props) => {
         </Form.Item>
 
         <Form.Item
-          name="newPassword"
+          name="new_password"
           rules={[
             { required: true, message: "Please input your new password!" },
           ]}
@@ -65,12 +65,12 @@ const ChangePasswordPage = (props) => {
 
         <Form.Item
           name="confirmPassword"
-          dependencies={["newPassword"]}
+          dependencies={["new_password"]}
           rules={[
             { required: true, message: "Please confirm your new password!" },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("newPassword") === value) {
+                if (!value || getFieldValue("new_password") === value) {
                   return Promise.resolve();
                 }
                 return Promise.reject(new Error("Passwords do not match!"));
@@ -83,47 +83,26 @@ const ChangePasswordPage = (props) => {
         </Form.Item>
 
         <Form.Item
-          name="firstName"
-          label={
-            <span>
-              <Typography.Text type="danger"></Typography.Text>First Name
-            </span>
-          }
+          name="first_name"
+          rules={[{ required: true, message: "Please input your First Name!" }]}
+          label="First Name"
         >
           <Input placeholder="First Name" />
         </Form.Item>
 
         <Form.Item
-          name="lastName"
+          name="last_name"
           rules={[{ required: true, message: "Please input your Last Name!" }]}
-          label={
-            <span>
-              <Typography.Text type="danger"></Typography.Text>Last Name
-            </span>
-          }
+          label="Last Name"
         >
           <Input placeholder="Last Name" />
         </Form.Item>
 
-        <Form.Item
-          name="email"
-          label={
-            <span>
-              <Typography.Text type="danger"></Typography.Text>Email Address
-            </span>
-          }
-        >
+        <Form.Item name="email" label="Email Address">
           <Input placeholder="Email Address" />
         </Form.Item>
 
-        <Form.Item
-          name="phoneNumber"
-          label={
-            <span>
-              <Typography.Text type="danger"></Typography.Text>Phone Number
-            </span>
-          }
-        >
+        <Form.Item name="phone_number" label="Phone Number">
           <Input placeholder="Phone Number" />
         </Form.Item>
 

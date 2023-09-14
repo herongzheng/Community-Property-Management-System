@@ -80,63 +80,6 @@ function IssueListR() {
     setLoading(false);
   }, [loading]);
 
-  // const dataSource = [
-  //   {
-  //     id: 1,
-  //     title: "Leak in master bathroom",
-  //     content: "123434 234 ,234234235,234",
-  //     report_date: "2023-08-05",
-  //     closed_date: "2023-08-06",
-  //     confirmed: true,
-  //     tenant_id: "Room003",
-  //     images: [
-  //       {
-  //         url: "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png",
-  //         issue: 1,
-  //       },
-  //       {
-  //         url: "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png",
-  //         issue: 1,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Ant Design",
-  //     content: "There is no problem with Ant Design",
-  //     report_date: "2023-08-06",
-  //     closed_date: null,
-  //     confirmed: false,
-  //     tenant_id: "Room005",
-  //     images: [
-  //       {
-  //         url: "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png",
-  //         issue: 2,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Air Conditioner Problem",
-  //     content: "123434 234 ,234234235,234235",
-  //     report_date: "2023-08-07",
-  //     closed_date: null,
-  //     confirmed: true,
-  //     tenant_id: "Room001",
-  //     images: [],
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Request Pest Control",
-  //     content: "123434 234 ,234234235,234235",
-  //     report_date: "2023-08-07",
-  //     closed_date: "2023-08-09",
-  //     confirmed: true,
-  //     tenant_id: "Room002",
-  //     images: [],
-  //   },
-  // ];
-
   const [expandedRowKeys, setExpandedRowKeys] = useState([]);
 
   return (

@@ -30,11 +30,7 @@ export const changePassword = (data) => {
       Authorization: `Bearer ${authToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      old_password: data.oldPassword,
-      new_password: data.newPassword,
-      last_name: data.lastName,
-    }),
+    body: JSON.stringify(data),
   }).then((response) => {
     if (response.status !== 200) {
       throw Error("Failed to change password");
