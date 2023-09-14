@@ -566,7 +566,7 @@ export const messages = async () => {
   }
 };
 
-export const getUnreadMessageCount = async () => {
+export const getUnPickedUpCount = async () => {
   try {
     const authToken = localStorage.getItem("authToken");
 
@@ -574,7 +574,7 @@ export const getUnreadMessageCount = async () => {
       throw new Error("Authentication token is not available");
     }
 
-    const unreadMessageCountUrl = `${SERVER_ORIGIN}/messages/unread_count`;
+    const unreadMessageCountUrl = `${SERVER_ORIGIN}/messages/unpicked_count`;
 
     const response = await fetch(unreadMessageCountUrl, {
       method: "GET",

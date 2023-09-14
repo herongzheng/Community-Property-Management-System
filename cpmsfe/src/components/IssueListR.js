@@ -17,57 +17,10 @@ import React from "react";
 import SubmitRequest from "./SubmitRequest";
 import { getIssues } from "../utils";
 
-class NewRquestButton extends React.Component {
-  state = {
-    modalVisible: false,
-  };
-
-  openModal = () => {
-    this.setState({
-      modalVisible: true,
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      modalVisible: false,
-    });
-  };
-
-  render() {
-    const { modalVisible } = this.state;
-
-    const modalTitle = `Request Submission Form`;
-
-    return (
-      <>
-        <Button onClick={this.openModal} shape="round">
-          New Request
-        </Button>
-        {modalVisible && (
-          <Modal
-            title={modalTitle}
-            centered={true}
-            visible={modalVisible}
-            closable={false}
-            footer={null}
-            onCancel={this.handleCancel}
-            destroyOnClose={true}
-          >
-            <SubmitRequest
-              onSubmit={this.props.onSubmit}
-              onCancel={this.handleCancel}
-            />
-          </Modal>
-        )}
-      </>
-    );
-  }
-}
-
 function IssueListR() {
   const [data, SetData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     getIssues()
@@ -78,7 +31,16 @@ function IssueListR() {
         message.error(err.message);
       });
     setLoading(false);
+    setModalVisible(false);
   }, [loading]);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setModalVisible(false);
+  };
 
   const [expandedRowKeys, setExpandedRowKeys] = useState([]);
 
@@ -90,9 +52,23 @@ function IssueListR() {
       loading={loading}
       toolBarRender={() => {
         return [
-          <NewRquestButton onSubmit={() => setLoading(true)}>
+          <Button onClick={openModal} shape="round">
             New Request
-          </NewRquestButton>,
+          </Button>,
+          <Modal
+            title="Request Submission Form"
+            centered={true}
+            visible={modalVisible}
+            closable={false}
+            footer={null}
+            onCancel={handleCancel}
+            destroyOnClose={true}
+          >
+            <SubmitRequest
+              onSubmit={() => setLoading(true)}
+              onCancel={handleCancel}
+            />
+          </Modal>,
           <Button type="primary" shape="round" onClick={() => setLoading(true)}>
             Refresh
           </Button>,
@@ -209,13 +185,6 @@ function IssueListR() {
                 </Space>
               );
             }
-
-            //   <Space size={5}>
-            //     {item}
-
-            //     {<Button color="blue">Confirm</Button>}
-            //     <Button color="#5BD8A6">Close</Button>
-            //   </Space>
           },
         },
         content: {

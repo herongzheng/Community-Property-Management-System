@@ -109,7 +109,7 @@ const PackagesPage = () => {
       </Button>
 
       <Modal
-        title="Input Information"
+        title="New package"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
