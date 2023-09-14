@@ -1,23 +1,26 @@
 import React from "react";
 import { Tabs } from "antd";
 import IssueListH from "./IssueListH";
+import Residents from "./Residents";
+import ChatPage from "./ChatPage";
+import PackagesPage from "./PackagesPage";
 
 const { TabPane } = Tabs;
 
 function HOAHomePage() {
   return (
     <Tabs defaultActiveKey="1" destroyInactiveTabPane={true}>
-      <TabPane tab="Resident Management" key="1">
-        <div>Resident Management component</div>
+      <TabPane tab="Forum" key="1">
+        <ChatPage />
       </TabPane>
       <TabPane tab="Request Management" key="2">
         <IssueListH />
       </TabPane>
-      <TabPane tab="Forum" key="3">
-        <div>chat component</div>
+      <TabPane tab="Resident Management" key="3">
+        <Residents />
       </TabPane>
       <TabPane tab="Package Management" key="4">
-        <div>Package component</div>
+        <PackagesPage />
       </TabPane>
     </Tabs>
   );

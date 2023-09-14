@@ -60,7 +60,7 @@ const Residents = () => {
 
   return (
     <>
-      <Divider orientation="left">Resident</Divider>
+      {/* <Divider orientation="left">Resident</Divider> */}
       <Modal
         title="New Resident"
         open={isModalOpen}
