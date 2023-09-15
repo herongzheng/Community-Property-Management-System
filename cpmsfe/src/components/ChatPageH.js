@@ -17,7 +17,7 @@ import {
   deleteChat,
   likeChat,
   replyChat,
-  showreplyChat,
+  showReplyChat,
   stickChat,
   unstickChat,
   likedChat,
@@ -69,7 +69,7 @@ const CommentList = ({
   const handleToggleReplies = async (commentId) => {
     try {
       if (!repliesVisibility[commentId]) {
-        const replies = await showreplyChat(commentId);
+        const replies = await showReplyChat(commentId);
         setRepliesVisibility({
           ...repliesVisibility,
           [commentId]: replies,

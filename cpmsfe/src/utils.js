@@ -137,33 +137,50 @@ export const closeIssue = (issueId) => {
   });
 };
 
-export const chat = async () => {
+// export const chat = async () => {
+//   const authToken = localStorage.getItem("authToken");
+//   const listChatsUrl = `${SERVER_ORIGIN}/chat`;
+
+//   try {
+//     const response = await fetch(listChatsUrl, {
+//       headers: {
+//         Authorization: `Bearer ${authToken}`,
+//       },
+//     });
+//     if (response.status !== 200) {
+//       throw new Error("Failed to get chat list");
+//     }
+//     const chatData = await response.json();
+//     return chatData.map((chatItem) => ({
+//       id: chatItem.id,
+//       content: chatItem.content,
+//       username: chatItem.user.username,
+//       likes: chatItem.likes,
+//       important: chatItem.important,
+//       posted_time: new Date(chatItem.posted_time).toLocaleString(),
+//       stick_to_top: chatItem.stick_to_top,
+//     }));
+//   } catch (error) {
+//     console.error("Error:", error);
+//     throw error; // Rethrow the error for further handling
+//   }
+// };
+
+export const chat = () => {
   const authToken = localStorage.getItem("authToken");
   const listChatsUrl = `${SERVER_ORIGIN}/chat`;
 
-  try {
-    const response = await fetch(listChatsUrl, {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    });
+  return fetch(listChatsUrl, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }).then((response) => {
     if (response.status !== 200) {
-      throw new Error("Failed to get chat list");
+      throw Error("Fail to get post list");
     }
-    const chatData = await response.json();
-    return chatData.map((chatItem) => ({
-      id: chatItem.id,
-      content: chatItem.content,
-      username: chatItem.user.username,
-      likes: chatItem.likes,
-      important: chatItem.important,
-      posted_time: new Date(chatItem.posted_time).toLocaleString(),
-      stick_to_top: chatItem.stick_to_top,
-    }));
-  } catch (error) {
-    console.error("Error:", error);
-    throw error; // Rethrow the error for further handling
-  }
+
+    return response.json();
+  });
 };
 
 export const createChat = async (postData) => {
@@ -374,37 +391,54 @@ export const unstickChat = async (postId) => {
   }
 };
 
-export const showreplyChat = async (postId) => {
-  const authToken = localStorage.getItem("authToken");
-  const showreplyChatUrl = `${SERVER_ORIGIN}/chat/show_replies/${postId}`;
+// export const showreplyChat = async (postId) => {
+//   const authToken = localStorage.getItem("authToken");
+//   const showreplyChatUrl = `${SERVER_ORIGIN}/chat/show_replies/${postId}`;
 
-  return fetch(showreplyChatUrl, {
+//   return fetch(showreplyChatUrl, {
+//     headers: {
+//       Authorization: `Bearer ${authToken}`,
+//     },
+//   })
+//     .then((response) => {
+//       if (response.status !== 200) {
+//         throw new Error("Failed to get chat list");
+//       }
+
+//       return response.json();
+//     })
+//     .then((chatData) => {
+//       return chatData.map((chatItem) => ({
+//         id: chatItem.id,
+//         content: chatItem.content,
+//         username: chatItem.user.username,
+//         likes: chatItem.likes,
+//         important: chatItem.important,
+//         posted_time: new Date(chatItem.posted_time).toLocaleString(),
+//         stick_to_top: chatItem.stick_to_top,
+//       }));
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//       throw error; // Rethrow the error for further handling
+//     });
+// };
+
+export const showReplyChat = (postId) => {
+  const authToken = localStorage.getItem("authToken");
+  const showReplyChatUrl = `${SERVER_ORIGIN}/chat/show_replies/${postId}`;
+
+  return fetch(showReplyChatUrl, {
     headers: {
       Authorization: `Bearer ${authToken}`,
     },
-  })
-    .then((response) => {
-      if (response.status !== 200) {
-        throw new Error("Failed to get chat list");
-      }
+  }).then((response) => {
+    if (response.status !== 200) {
+      throw Error("Fail to get reply list");
+    }
 
-      return response.json();
-    })
-    .then((chatData) => {
-      return chatData.map((chatItem) => ({
-        id: chatItem.id,
-        content: chatItem.content,
-        username: chatItem.user.username,
-        likes: chatItem.likes,
-        important: chatItem.important,
-        posted_time: new Date(chatItem.posted_time).toLocaleString(),
-        stick_to_top: chatItem.stick_to_top,
-      }));
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      throw error; // Rethrow the error for further handling
-    });
+    return response.json();
+  });
 };
 
 export const likedChat = async () => {

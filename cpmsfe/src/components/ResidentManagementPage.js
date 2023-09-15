@@ -97,10 +97,10 @@ function ResidentManagementPage() {
           onFinish={() => handleNewResident(currentUser)}
           preserve={false}
         >
-          <h3>
-            Do you want to renew a resident and clean all the information
-            associated with this address?
-          </h3>
+          <p>New username: your room number</p>
+          <p>Temporary password: 123456</p>
+          <h3>Do you want to remove the current resident's information?</h3>
+
           <br />
           <Form.Item>
             <Button
