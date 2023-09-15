@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   Space,
+  Modal,
 } from "antd";
 import React from "react";
 import { useState, useEffect } from "react";
@@ -18,6 +19,7 @@ import {
   likedChat,
   likeChat,
   unlikeChat,
+  deleteChat,
 } from "../utils";
 import moment from "moment";
 import { LikeOutlined, LikeFilled, pushpinFilled } from "@ant-design/icons";
@@ -42,6 +44,52 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </>
 );
 
+const CommentDeletionModal = ({
+  onFinish,
+  deleteModalVisible,
+  cancelDelete,
+}) => {
+  return (
+    <>
+      <Modal
+        destroyOnClose={true}
+        title="Delete comment"
+        centered={true}
+        visible={deleteModalVisible}
+        footer={null}
+        onCancel={cancelDelete}
+        closable={false}
+      >
+        <Form
+          preserve={false}
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          onFinish={onFinish}
+        >
+          <h4>Delete your comment permanently?</h4>
+          <br />
+          <Form.Item>
+            <Button
+              type="primary"
+              onClick={cancelDelete}
+              style={{ marginLeft: "120px" }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="default"
+              htmlType="submit"
+              style={{ marginLeft: "50px" }}
+            >
+              Delete
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </>
+  );
+};
+
 function CommentPage() {
   const [dataL1, setDataL1] = useState([]);
   const [dataL2, setDataL2] = useState({});
@@ -49,8 +97,10 @@ function CommentPage() {
   const [loading2, setLoading2] = useState(false);
   const [expandStates, setExpandStates] = useState({});
   const [replyingStates, setReplyingStates] = useState({});
-  const [thumbsupStates, setThumbsupStates] = useState([]);
+  const [thumbsupStates, setThumbsupStates] = useState(new Set());
   const [thumbsupCounts, setThumbsupCounts] = useState({});
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [modalId, setModalId] = useState(null);
 
   const [newCommentValue, setNewCommentValue] = useState("");
 
@@ -88,6 +138,15 @@ function CommentPage() {
       const replyList = await replyChat(id, postData);
       setDataL2({ ...dataL2, [id]: replyList });
       message.success(`Post successfully`);
+      setThumbsupCounts(
+        replyList.reduce(
+          (acc, cur) => ({
+            ...acc,
+            [cur.id]: cur.likes,
+          }),
+          { ...thumbsupCounts }
+        )
+      );
     } catch (error) {
       message.error(error.message);
     } finally {
@@ -96,8 +155,6 @@ function CommentPage() {
       setNewCommentValue("");
     }
   };
-
-  const updateDataL1 = () => {};
 
   useEffect(() => {
     chat()
@@ -129,7 +186,7 @@ function CommentPage() {
 
   useEffect(() => {
     setLoading2(false);
-  }, [expandStates, replyingStates, thumbsupStates]);
+  }, [expandStates, replyingStates, thumbsupStates, thumbsupCounts]);
 
   const toggleReplies = async (id, isExpanded) => {
     if (!isExpanded) {
@@ -191,6 +248,54 @@ function CommentPage() {
         message.error(error.message);
       } finally {
       }
+    }
+  };
+
+  const cancelDelete = () => {
+    setDeleteModalVisible(false);
+    setModalId(null);
+  };
+
+  const onDelete = (id) => {
+    setModalId(id);
+    setDeleteModalVisible(true);
+  };
+
+  const handleDeleteComment1 = async (id) => {
+    try {
+      await deleteChat(id);
+    } catch (error) {
+      message.error(error.message);
+    } finally {
+      setLoading1(true);
+      setModalId(null);
+    }
+  };
+
+  const handleDeleteComment2 = async (id1, id2) => {
+    try {
+      await deleteChat(id2);
+    } catch (error) {
+      message.error(error.message);
+    }
+
+    try {
+      const replies = await showReplyChat(id1);
+      setDataL2({ ...dataL2, [id1]: replies });
+      setThumbsupCounts(
+        replies.reduce(
+          (acc, cur) => ({
+            ...acc,
+            [cur.id]: cur.likes,
+          }),
+          { ...thumbsupCounts }
+        )
+      );
+    } catch (error) {
+      message.error(error.message);
+    } finally {
+      setLoading2(true);
+      setModalId(null);
     }
   };
 
@@ -260,7 +365,19 @@ function CommentPage() {
                         )}{" "}
                         {thumbsupCounts[`${commentL1.id}`]}
                       </span>
-                      <Button>123</Button>
+                      {commentL1.user.username ===
+                        localStorage.getItem("username") && (
+                        <span onClick={() => onDelete(commentL1.id)}>
+                          Delete
+                        </span>
+                      )}
+                      {modalId === commentL1.id && (
+                        <CommentDeletionModal
+                          onFinish={() => handleDeleteComment1(commentL1.id)}
+                          deleteModalVisible={deleteModalVisible}
+                          cancelDelete={cancelDelete}
+                        />
+                      )}
                     </Space>
                   </div>
                   <div style={{ grid_row: 2 }}>
@@ -295,7 +412,7 @@ function CommentPage() {
                       author={localStorage.getItem("username")}
                       avatar={
                         <Avatar
-                          src="https://joeschmoe.io/api/v1/random"
+                          src="https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?w=740&t=st=1694752925~exp=1694753525~hmac=9f7cafd64ea5660940fd27018077159cd1115668df4f6ac95e5127faec762e83"
                           alt="Han Solo"
                         />
                       }
@@ -322,7 +439,7 @@ function CommentPage() {
                                 author={commentL2.user.username}
                                 avatar={
                                   <Avatar
-                                    src="https://joeschmoe.io/api/v1/random"
+                                    src="https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?w=740&t=st=1694752925~exp=1694753525~hmac=9f7cafd64ea5660940fd27018077159cd1115668df4f6ac95e5127faec762e83"
                                     alt="Han Solo"
                                   />
                                 }
@@ -348,7 +465,26 @@ function CommentPage() {
                                       {thumbsupCounts[`${commentL2.id}`]}
                                     </span>
 
-                                    <Button>123</Button>
+                                    {commentL2.user.username ===
+                                      localStorage.getItem("username") && (
+                                      <span
+                                        onClick={() => onDelete(commentL2.id)}
+                                      >
+                                        Delete
+                                      </span>
+                                    )}
+                                    {modalId === commentL2.id && (
+                                      <CommentDeletionModal
+                                        onFinish={() =>
+                                          handleDeleteComment2(
+                                            commentL1.id,
+                                            commentL2.id
+                                          )
+                                        }
+                                        deleteModalVisible={deleteModalVisible}
+                                        cancelDelete={cancelDelete}
+                                      />
+                                    )}
                                   </Space>,
                                 ]}
                               ></Comment>
@@ -367,36 +503,4 @@ function CommentPage() {
   );
 }
 
-// {
-//   typeof expandStates[`${commentL1.id}`] != "undefined" &&
-//     expandStates[`${commentL1.id}`] !== false && (
-//       <List
-//         loading={loading2}
-//         dataSource={dataL2[`${commentL1.id}`]}
-//         renderItem={(commentL2) => (
-//           <List.Item>
-//             {" "}
-//             <Comment>
-//               {/* author={commentL2.user.username} */}
-//               avatar=
-//               {
-//                 <Avatar
-//                   src="https://joeschmoe.io/api/v1/random"
-//                   alt="Han Solo"
-//                 />
-//               }
-//               content={commentL2.content}
-//               {/* actions=
-//                 {[<span key="comment-nested-reply-to">Reply to</span>]} */}
-//             </Comment>{" "}
-//           </List.Item>
-//         )}
-//       />
-//     );
-// }
-
-// {
-//   /* actions=
-//                   {[<span key="comment-nested-reply-to">Reply to</span>]} */
-// }
 export default CommentPage;

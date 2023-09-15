@@ -221,29 +221,44 @@ export const createChat = async (postData) => {
   }
 };
 
-export const deleteChat = async (postId, replyTo) => {
+// export const deleteChat = async (postId, replyTo) => {
+//   const authToken = localStorage.getItem("authToken");
+//   const deleteChatUrl = `${SERVER_ORIGIN}/chat/delete/${postId}`;
+
+//   try {
+//     const response = await fetch(deleteChatUrl, {
+//       method: "DELETE",
+//       headers: {
+//         Authorization: `Bearer ${authToken}`,
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ replyTo }), // include the replyTo attribute in the request body
+//     });
+
+//     if (response.status === 200) {
+//       return { success: true, message: "Chat deleted successfully" };
+//     } else {
+//       return { success: false, message: "Failed to delete chat" };
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//     return { success: false, message: error.message };
+//   }
+// };
+
+export const deleteChat = (postId) => {
   const authToken = localStorage.getItem("authToken");
   const deleteChatUrl = `${SERVER_ORIGIN}/chat/delete/${postId}`;
-
-  try {
-    const response = await fetch(deleteChatUrl, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ replyTo }), // include the replyTo attribute in the request body
-    });
-
-    if (response.status === 200) {
-      return { success: true, message: "Chat deleted successfully" };
-    } else {
-      return { success: false, message: "Failed to delete chat" };
+  return fetch(deleteChatUrl, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }).then((response) => {
+    if (response.status !== 200) {
+      throw Error("Fail to delete comment");
     }
-  } catch (error) {
-    console.error("Error:", error);
-    return { success: false, message: error.message };
-  }
+  });
 };
 
 export const likeChat = async (postId) => {

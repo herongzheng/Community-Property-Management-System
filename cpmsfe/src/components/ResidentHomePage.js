@@ -4,6 +4,7 @@ import { Tabs, notification, List, Avatar, message } from "antd";
 import { getUnPickedUpCount } from "../utils";
 import MessagePage from "./MessagePage";
 import ChatPage from "./ChatPage";
+import CommentPage from "./CommentPage";
 
 const { TabPane } = Tabs;
 
@@ -30,7 +31,7 @@ const ResidentHomePage = () => {
   return (
     <Tabs defaultActiveKey="1" destroyInactiveTabPane={true}>
       <TabPane tab="Forum" key="1">
-        <ChatPage />
+        <CommentPage />
       </TabPane>
       <TabPane tab="My Requests" key="2">
         <IssueListR />
