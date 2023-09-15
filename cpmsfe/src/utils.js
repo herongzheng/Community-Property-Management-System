@@ -441,30 +441,47 @@ export const showReplyChat = (postId) => {
   });
 };
 
-export const likedChat = async () => {
-  try {
-    const authToken = localStorage.getItem("authToken");
-    const likedChatUrl = `${SERVER_ORIGIN}/chat/liked`;
+export const likedChat = () => {
+  const authToken = localStorage.getItem("authToken");
+  const likedChatUrl = `${SERVER_ORIGIN}/chat/liked`;
 
-    const response = await fetch(likedChatUrl, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
+  return fetch(likedChatUrl, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }).then((response) => {
+    if (response.status !== 200) {
+      throw Error("Fail to get reply list");
     }
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching liked chat:", error);
-    throw error;
-  }
+    return response.json();
+  });
 };
+
+// export const likedChat = async () => {
+//   try {
+//     const authToken = localStorage.getItem("authToken");
+//     const likedChatUrl = `${SERVER_ORIGIN}/chat/liked`;
+
+//     const response = await fetch(likedChatUrl, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${authToken}`,
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok " + response.statusText);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching liked chat:", error);
+//     throw error;
+//   }
+// };
 
 export const packages = async () => {
   try {

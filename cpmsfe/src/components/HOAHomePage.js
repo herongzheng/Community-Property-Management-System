@@ -4,6 +4,7 @@ import IssueListH from "./IssueListH";
 import ChatPage from "./ChatPage";
 import PackagesPage from "./PackagesPage";
 import ResidentManagementPage from "./ResidentManagementPage";
+import CommentPage from "./CommentPage";
 
 const { TabPane } = Tabs;
 
@@ -11,7 +12,8 @@ function HOAHomePage() {
   return (
     <Tabs defaultActiveKey="1" destroyInactiveTabPane={true}>
       <TabPane tab="Forum" key="1">
-        <ChatPage />
+        {/* <ChatPage /> */}
+        <CommentPage />
       </TabPane>
       <TabPane tab="Request Management" key="2">
         <IssueListH />

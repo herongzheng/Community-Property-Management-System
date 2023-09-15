@@ -10,9 +10,17 @@ import {
 } from "antd";
 import React from "react";
 import { useState, useEffect } from "react";
-import { showReplyChat, chat, createChat, replyChat } from "../utils";
+import {
+  showReplyChat,
+  chat,
+  createChat,
+  replyChat,
+  likedChat,
+  likeChat,
+  unlikeChat,
+} from "../utils";
 import moment from "moment";
-import { LikeOutlined, LikeFilled, pushpin_filled } from "@ant-design/icons";
+import { LikeOutlined, LikeFilled, pushpinFilled } from "@ant-design/icons";
 
 // the compoennt to add a comment
 const { TextArea } = Input;
@@ -41,7 +49,8 @@ function CommentPage() {
   const [loading2, setLoading2] = useState(false);
   const [expandStates, setExpandStates] = useState({});
   const [replyingStates, setReplyingStates] = useState({});
-  const [thumbsupStates, setThumbsupStates] = useState({});
+  const [thumbsupStates, setThumbsupStates] = useState([]);
+  const [thumbsupCounts, setThumbsupCounts] = useState({});
 
   const [newCommentValue, setNewCommentValue] = useState("");
 
@@ -94,17 +103,33 @@ function CommentPage() {
     chat()
       .then((data) => {
         setDataL1(data);
+        setThumbsupCounts(
+          data.reduce(
+            (acc, cur) => ({
+              ...acc,
+              [cur.id]: cur.likes,
+            }),
+            { ...thumbsupCounts }
+          )
+        );
       })
       .catch((err) => {
         message.error(err.message);
       });
 
+    likedChat()
+      .then((data) => {
+        setThumbsupStates(new Set(data));
+      })
+      .catch((err) => {
+        message.error(err.message);
+      });
     setLoading1(false);
   }, [loading1]);
 
   useEffect(() => {
     setLoading2(false);
-  }, [expandStates, replyingStates]);
+  }, [expandStates, replyingStates, thumbsupStates]);
 
   const toggleReplies = async (id, isExpanded) => {
     if (!isExpanded) {
@@ -112,6 +137,15 @@ function CommentPage() {
         const replies = await showReplyChat(id);
         setDataL2({ ...dataL2, [id]: replies });
         setExpandStates({ ...expandStates, [id]: true });
+        setThumbsupCounts(
+          replies.reduce(
+            (acc, cur) => ({
+              ...acc,
+              [cur.id]: cur.likes,
+            }),
+            { ...thumbsupCounts }
+          )
+        );
       } catch (error) {
         message.error(error.message);
       } finally {
@@ -127,6 +161,36 @@ function CommentPage() {
       setReplyingStates({ ...replyingStates, [id]: true });
     } else {
       setReplyingStates({ ...replyingStates, [id]: false });
+    }
+  };
+
+  const toggleLike = async (id, isLiked) => {
+    if (!isLiked) {
+      try {
+        await likeChat(id);
+        let newState = new Set(thumbsupStates);
+        newState.add(id);
+        setThumbsupStates(newState);
+        let tempState = thumbsupCounts;
+        tempState[`${id}`] += 1;
+        setThumbsupCounts(tempState);
+      } catch (error) {
+        message.error(error.message);
+      } finally {
+      }
+    } else {
+      try {
+        await unlikeChat(id);
+        let newState = new Set(thumbsupStates);
+        newState.delete(id);
+        setThumbsupStates(newState);
+        let tempState = thumbsupCounts;
+        tempState[`${id}`] -= 1;
+        setThumbsupCounts(tempState);
+      } catch (error) {
+        message.error(error.message);
+      } finally {
+      }
     }
   };
 
@@ -181,6 +245,21 @@ function CommentPage() {
                 <div style={{ display: "grid" }}>
                   <div style={{ grid_row: 1 }}>
                     <Space size={15}>
+                      <span
+                        onClick={() =>
+                          toggleLike(
+                            commentL1.id,
+                            thumbsupStates.has(commentL1.id)
+                          )
+                        }
+                      >
+                        {thumbsupStates.has(commentL1.id) ? (
+                          <LikeFilled />
+                        ) : (
+                          <LikeOutlined />
+                        )}{" "}
+                        {thumbsupCounts[`${commentL1.id}`]}
+                      </span>
                       <Button>123</Button>
                     </Space>
                   </div>
@@ -251,6 +330,27 @@ function CommentPage() {
                                   commentL2.posted_time
                                 ).fromNow()}
                                 content={commentL2.content}
+                                actions={[
+                                  <Space size={15}>
+                                    <span
+                                      onClick={() =>
+                                        toggleLike(
+                                          commentL2.id,
+                                          thumbsupStates.has(commentL2.id)
+                                        )
+                                      }
+                                    >
+                                      {thumbsupStates.has(commentL2.id) ? (
+                                        <LikeFilled />
+                                      ) : (
+                                        <LikeOutlined />
+                                      )}{" "}
+                                      {thumbsupCounts[`${commentL2.id}`]}
+                                    </span>
+
+                                    <Button>123</Button>
+                                  </Space>,
+                                ]}
                               ></Comment>
                             </div>
                           )
