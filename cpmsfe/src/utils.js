@@ -137,35 +137,6 @@ export const closeIssue = (issueId) => {
   });
 };
 
-// export const chat = async () => {
-//   const authToken = localStorage.getItem("authToken");
-//   const listChatsUrl = `${SERVER_ORIGIN}/chat`;
-
-//   try {
-//     const response = await fetch(listChatsUrl, {
-//       headers: {
-//         Authorization: `Bearer ${authToken}`,
-//       },
-//     });
-//     if (response.status !== 200) {
-//       throw new Error("Failed to get chat list");
-//     }
-//     const chatData = await response.json();
-//     return chatData.map((chatItem) => ({
-//       id: chatItem.id,
-//       content: chatItem.content,
-//       username: chatItem.user.username,
-//       likes: chatItem.likes,
-//       important: chatItem.important,
-//       posted_time: new Date(chatItem.posted_time).toLocaleString(),
-//       stick_to_top: chatItem.stick_to_top,
-//     }));
-//   } catch (error) {
-//     console.error("Error:", error);
-//     throw error; // Rethrow the error for further handling
-//   }
-// };
-
 export const chat = () => {
   const authToken = localStorage.getItem("authToken");
   const listChatsUrl = `${SERVER_ORIGIN}/chat`;
@@ -220,31 +191,6 @@ export const createChat = async (postData) => {
     throw error; // Rethrow the error for further handling
   }
 };
-
-// export const deleteChat = async (postId, replyTo) => {
-//   const authToken = localStorage.getItem("authToken");
-//   const deleteChatUrl = `${SERVER_ORIGIN}/chat/delete/${postId}`;
-
-//   try {
-//     const response = await fetch(deleteChatUrl, {
-//       method: "DELETE",
-//       headers: {
-//         Authorization: `Bearer ${authToken}`,
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ replyTo }), // include the replyTo attribute in the request body
-//     });
-
-//     if (response.status === 200) {
-//       return { success: true, message: "Chat deleted successfully" };
-//     } else {
-//       return { success: false, message: "Failed to delete chat" };
-//     }
-//   } catch (error) {
-//     console.error("Error:", error);
-//     return { success: false, message: error.message };
-//   }
-// };
 
 export const deleteChat = (postId) => {
   const authToken = localStorage.getItem("authToken");
@@ -406,39 +352,6 @@ export const unstickChat = async (postId) => {
   }
 };
 
-// export const showreplyChat = async (postId) => {
-//   const authToken = localStorage.getItem("authToken");
-//   const showreplyChatUrl = `${SERVER_ORIGIN}/chat/show_replies/${postId}`;
-
-//   return fetch(showreplyChatUrl, {
-//     headers: {
-//       Authorization: `Bearer ${authToken}`,
-//     },
-//   })
-//     .then((response) => {
-//       if (response.status !== 200) {
-//         throw new Error("Failed to get chat list");
-//       }
-
-//       return response.json();
-//     })
-//     .then((chatData) => {
-//       return chatData.map((chatItem) => ({
-//         id: chatItem.id,
-//         content: chatItem.content,
-//         username: chatItem.user.username,
-//         likes: chatItem.likes,
-//         important: chatItem.important,
-//         posted_time: new Date(chatItem.posted_time).toLocaleString(),
-//         stick_to_top: chatItem.stick_to_top,
-//       }));
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//       throw error; // Rethrow the error for further handling
-//     });
-// };
-
 export const showReplyChat = (postId) => {
   const authToken = localStorage.getItem("authToken");
   const showReplyChatUrl = `${SERVER_ORIGIN}/chat/show_replies/${postId}`;
@@ -472,31 +385,6 @@ export const likedChat = () => {
     return response.json();
   });
 };
-
-// export const likedChat = async () => {
-//   try {
-//     const authToken = localStorage.getItem("authToken");
-//     const likedChatUrl = `${SERVER_ORIGIN}/chat/liked`;
-
-//     const response = await fetch(likedChatUrl, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${authToken}`,
-//       },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok " + response.statusText);
-//     }
-
-//     const data = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.error("Error fetching liked chat:", error);
-//     throw error;
-//   }
-// };
 
 export const packages = async () => {
   try {
@@ -591,14 +479,6 @@ export const pickupPackage = async (packageId) => {
     } else if (response.status !== 200) {
       throw new Error("Failed to create chat post");
     }
-    // const responseBody = await response.text();
-    // if (responseBody) {
-    //   const updatedPosts = JSON.parse(responseBody);
-    //   return updatedPosts;
-    // } else {
-    //   return null; // or an appropriate default value
-    // }
-    // return await response.json();
   } catch (error) {
     console.error("Error:", error);
     throw error;

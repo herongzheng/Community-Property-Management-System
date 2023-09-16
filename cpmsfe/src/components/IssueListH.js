@@ -1,28 +1,9 @@
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import { ProList } from "@ant-design/pro-components";
-import {
-  Button,
-  Tag,
-  Space,
-  Carousel,
-  Image,
-  Card,
-  message,
-  Empty,
-} from "antd";
+import { Button, Tag, Space, Carousel, Image, Card, message } from "antd";
 import { useState, useEffect } from "react";
-import { ReactText } from "react";
 import { LeftCircleFilled, RightCircleFilled } from "@ant-design/icons";
 import { getIssues, confirmIssue, closeIssue } from "../utils";
-
-// import React from "react";
-
-// const IconText = ({ icon, text }) => (
-//   <span>
-//     {React.createElement(icon, { style: { marginInlineEnd: 8 } })}
-//     {text}
-//   </span>
-// );
 
 function IssueListH() {
   const [data, SetData] = useState([]);

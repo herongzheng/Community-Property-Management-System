@@ -20,9 +20,11 @@ import {
   likeChat,
   unlikeChat,
   deleteChat,
+  stickChat,
+  unstickChat,
 } from "../utils";
 import moment from "moment";
-import { LikeOutlined, LikeFilled, pushpinFilled } from "@ant-design/icons";
+import { LikeOutlined, LikeFilled } from "@ant-design/icons";
 
 // the compoennt to add a comment
 const { TextArea } = Input;
@@ -101,6 +103,7 @@ function CommentPage() {
   const [thumbsupCounts, setThumbsupCounts] = useState({});
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [modalId, setModalId] = useState(null);
+  const [pinStates, setPinStates] = useState(new Set());
 
   const [newCommentValue, setNewCommentValue] = useState("");
 
@@ -169,6 +172,9 @@ function CommentPage() {
             { ...thumbsupCounts }
           )
         );
+        setPinStates(
+          new Set(data.filter((e) => e.stick_to_top).map((e) => e.id))
+        );
       })
       .catch((err) => {
         message.error(err.message);
@@ -181,6 +187,7 @@ function CommentPage() {
       .catch((err) => {
         message.error(err.message);
       });
+
     setLoading1(false);
   }, [loading1]);
 
@@ -251,6 +258,32 @@ function CommentPage() {
     }
   };
 
+  const togglePin = async (id, isPinned) => {
+    if (!isPinned) {
+      try {
+        const resp = await stickChat(id);
+        setDataL1(resp);
+        let newState = new Set(pinStates);
+        newState.add(id);
+        setPinStates(newState);
+      } catch (error) {
+        message.error(error.message);
+      } finally {
+      }
+    } else {
+      try {
+        const resp = await unstickChat(id);
+        setDataL1(resp);
+        let newState = new Set(pinStates);
+        newState.delete(id);
+        setPinStates(newState);
+      } catch (error) {
+        message.error(error.message);
+      } finally {
+      }
+    }
+  };
+
   const cancelDelete = () => {
     setDeleteModalVisible(false);
     setModalId(null);
@@ -299,22 +332,14 @@ function CommentPage() {
     }
   };
 
-  //   return (
-  //     <List
-  //       dataSource={dataL1}
-  //       renderItem={(commentL1) => (
-  //         <List.Item>
-  //           {" "}
-  //           <Comment author={commentL1.id}></Comment>{" "}
-  //         </List.Item>
-  //       )}
-  //     ></List>
-  //   );
-
   return (
     <>
       <Comment
-        author={localStorage.getItem("username")}
+        author={
+          <span style={{ color: "black" }}>
+            <b>{localStorage.getItem("username")}</b>
+          </span>
+        }
         avatar={
           <Avatar
             src="https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?w=740&t=st=1694752925~exp=1694753525~hmac=9f7cafd64ea5660940fd27018077159cd1115668df4f6ac95e5127faec762e83"
@@ -336,14 +361,28 @@ function CommentPage() {
         dataSource={dataL1}
         renderItem={(commentL1) => (
           <Comment
-            author={commentL1.user.username}
+            author={
+              pinStates.has(commentL1.id) ? (
+                <span style={{ color: "black" }}>
+                  <b>📌 {commentL1.user.username}</b>
+                </span>
+              ) : (
+                <span style={{ color: "black" }}>
+                  <b>{commentL1.user.username}</b>
+                </span>
+              )
+            }
             avatar={
               <Avatar
                 src="https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?w=740&t=st=1694752925~exp=1694753525~hmac=9f7cafd64ea5660940fd27018077159cd1115668df4f6ac95e5127faec762e83"
                 alt="Han Solo"
               />
             }
-            datetime={moment(commentL1.posted_time).fromNow()}
+            datetime={
+              <span style={{ color: "black" }}>
+                {moment(commentL1.posted_time).fromNow()}
+              </span>
+            }
             content={commentL1.content}
             actions={[
               <span style={{ display: "table-cell", vertical_align: "middle" }}>
@@ -365,6 +404,15 @@ function CommentPage() {
                         )}{" "}
                         {thumbsupCounts[`${commentL1.id}`]}
                       </span>
+                      {localStorage.getItem("asHost") === "true" && (
+                        <span
+                          onClick={() =>
+                            togglePin(commentL1.id, pinStates.has(commentL1.id))
+                          }
+                        >
+                          {pinStates.has(commentL1.id) ? "Unpin" : "pin"}
+                        </span>
+                      )}
                       {commentL1.user.username ===
                         localStorage.getItem("username") && (
                         <span onClick={() => onDelete(commentL1.id)}>
@@ -409,7 +457,11 @@ function CommentPage() {
                 {typeof replyingStates[`${commentL1.id}`] !== "undefined" &&
                   replyingStates[`${commentL1.id}`] !== false && (
                     <Comment
-                      author={localStorage.getItem("username")}
+                      author={
+                        <span style={{ color: "black" }}>
+                          <b>{localStorage.getItem("username")}</b>
+                        </span>
+                      }
                       avatar={
                         <Avatar
                           src="https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?w=740&t=st=1694752925~exp=1694753525~hmac=9f7cafd64ea5660940fd27018077159cd1115668df4f6ac95e5127faec762e83"
@@ -436,16 +488,30 @@ function CommentPage() {
                           typeof commentL2 !== "undefined" && (
                             <div>
                               <Comment
-                                author={commentL2.user.username}
+                                author={
+                                  <span
+                                    style={{
+                                      color: "black",
+                                    }}
+                                  >
+                                    <b>{commentL2.user.username}</b>
+                                  </span>
+                                }
                                 avatar={
                                   <Avatar
                                     src="https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?w=740&t=st=1694752925~exp=1694753525~hmac=9f7cafd64ea5660940fd27018077159cd1115668df4f6ac95e5127faec762e83"
                                     alt="Han Solo"
                                   />
                                 }
-                                datetime={moment(
-                                  commentL2.posted_time
-                                ).fromNow()}
+                                datetime={
+                                  <span
+                                    style={{
+                                      color: "black",
+                                    }}
+                                  >
+                                    {moment(commentL2.posted_time).fromNow()}
+                                  </span>
+                                }
                                 content={commentL2.content}
                                 actions={[
                                   <Space size={15}>

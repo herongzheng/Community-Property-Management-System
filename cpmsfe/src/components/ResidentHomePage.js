@@ -1,9 +1,8 @@
 import IssueListR from "./IssueListR";
 import React, { useState, useEffect } from "react";
-import { Tabs, notification, List, Avatar, message } from "antd";
+import { Tabs, notification } from "antd";
 import { getUnPickedUpCount } from "../utils";
 import MessagePage from "./MessagePage";
-import ChatPage from "./ChatPage";
 import CommentPage from "./CommentPage";
 
 const { TabPane } = Tabs;
