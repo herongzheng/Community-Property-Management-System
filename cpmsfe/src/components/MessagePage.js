@@ -12,7 +12,9 @@ const ListItem = ({ item, index }) => (
       title={<a href={item.url || "#"}>{item.title}</a>}
       description={
         <>
-          <p>{`Your package has arrived in our office. Please pick it up. Description: ${item.description}`}</p>
+          <p>
+            <b>{`Your package has arrived in our office. Please pick it up. Description: ${item.description}`}</b>
+          </p>
           <p>
             {`Received date : ${new Date(
               item.received_date
