@@ -11,7 +11,6 @@ import {
   message,
 } from "antd";
 import { useState, useEffect } from "react";
-import { ReactText } from "react";
 import { LeftCircleFilled, RightCircleFilled } from "@ant-design/icons";
 import React from "react";
 import SubmitRequest from "./SubmitRequest";
@@ -95,7 +94,11 @@ function IssueListR() {
         },
         description: {
           dataIndex: "content",
-          render: (item) => <span>{item}</span>,
+          render: (item) => (
+            <span>
+              <b>{item}</b>
+            </span>
+          ),
         },
 
         // actions: {

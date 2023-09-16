@@ -86,7 +86,7 @@ function ResidentManagementPage() {
         }}
       />
       <Modal
-        title="Confirm to renew"
+        title="New resident"
         visible={displayModal}
         onCancel={handleCancel}
         footer={null}
@@ -99,7 +99,7 @@ function ResidentManagementPage() {
         >
           <p>New username: your room number</p>
           <p>Temporary password: 123456</p>
-          <h3>Do you want to remove the current resident's information?</h3>
+          <h3>Do you want to remove the previous resident's information?</h3>
 
           <br />
           <Form.Item>
