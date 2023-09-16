@@ -57,6 +57,7 @@ class App extends React.Component {
     localStorage.removeItem("asHost");
     this.setState({
       authed: false,
+      authToken: "",
       asHost: false,
       clickChangePassword: true,
       isChangingPassword: false,
@@ -104,7 +105,7 @@ class App extends React.Component {
       <Layout style={{ height: "100vh" }}>
         <Header style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ fontSize: 16, fontWeight: 600, color: "white" }}>
-            Community Property Management System
+            Sweet Home Community
           </div>
           {this.state.authed && (
             <div>
