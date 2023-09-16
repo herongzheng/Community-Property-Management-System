@@ -1,6 +1,7 @@
 package com.laioffer.communitymanagement.config;
 
 import com.laioffer.communitymanagement.filter.JwtFilter;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,6 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/public/**").permitAll()
+                .antMatchers(HttpMethod.GET,  "/", "/index.html", "/*.json", "/*.png", "/static/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
 //                .antMatchers(HttpMethod.POST, "/packages").hasAuthority("ROLE_HOA")
 //                .antMatchers(HttpMethod.POST, "/messages/**").hasAuthority("ROLE_RESIDENT")
